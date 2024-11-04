@@ -1,0 +1,77 @@
+/* src/pages/Home.css */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem;
+    min-height: 100vh;
+}
+
+.home-title {
+    font-size: 2.5rem; /* Approximately equivalent to text-4xl */
+    font-weight: bold;
+    color: #4a4a4a; /* Dark gray */
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.card-container-home {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    justify-content: center; /* Center the cards */
+    gap: 1.5rem; /* Space between cards */
+    width: 100%;
+    max-width: 64rem; /* Max width equivalent to max-w-5xl */
+}
+
+/* General card styling */
+.card-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    height: 10rem; /* Equivalent to h-40 */
+    transition: box-shadow 0.3s;
+    padding: 1rem;
+    text-align: center;
+    width: 45%; /* Set width for mobile (two cards per row) */
+}
+
+.card-home:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+    font-size: 3rem; /* Equivalent to size "4x" */
+    margin-bottom: 0.5rem;
+}
+
+.card-title {
+    font-size: 1.5rem; /* Equivalent to text-xl */
+    font-weight: 600; /* Equivalent to font-semibold */
+    color: #333; /* Default text color */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .card-container-home {
+        flex-direction: row; /* Allow cards to be in a row */
+        justify-content: center; /* Center cards on smaller screens */
+    }
+
+    .card-home {
+        width: 45%; /* Card width on mobile (two cards per row) */
+    }
+}
+
+@media (min-width: 768px) {
+    .card-container-home {
+        flex-direction: row; /* Row layout on larger screens */
+    }
+
+    .card-home {
+        width: 20%; /* Set width for four cards per row on larger screens */
+    }
+}

@@ -1,0 +1,52 @@
+/* src/components/TimeElapsedPage.css */
+
+.time-elapsed-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #f7fafc; /* Light gray background */
+    min-height: 100vh; /* Full viewport height */
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #2d3748; /* Dark text */
+  }
+  
+  .time-display {
+    background-color: white; /* White background for the time box */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border-radius: 0.5rem; /* Rounded corners */
+    border: 1px solid #cbd5e0; /* Light gray border */
+    padding: 1.5rem; /* Padding inside the box */
+    text-align: center; /* Center text */
+  }
+  
+  .time-text {
+    font-size: 1.5rem; /* Text size for the time display */
+  }
+  
+  .time-value {
+    font-weight: bold; /* Bold font for time values */
+  }
+  
+  .days {
+    color: #2b6cb0; /* Blue color for days */
+  }
+  
+  .hours {
+    color: #48bb78; /* Green color for hours */
+  }
+  
+  .minutes {
+    color: #ecc94b; /* Yellow color for minutes */
+  }
+  
+  .seconds {
+    color: #e53e3e; /* Red color for seconds */
+  }
+  

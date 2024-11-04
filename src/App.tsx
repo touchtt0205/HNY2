@@ -1,77 +1,30 @@
 // src/App.tsx
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import WishCard from "./components/WishCard";
-
-interface Card {
-  id: number;
-  isOpen: boolean;
-  wish?: string; // คำขอที่ผู้ใช้กรอก
-  used: boolean; // เช็คว่าการ์ดนี้ถูกใช้แล้วหรือไม่
-}
-
-const initialCards: Card[] = Array.from({ length: 9 }, (_, i) => ({
-  id: i,
-  isOpen: false,
-  wish: undefined, // เริ่มต้นคำขอเป็น undefined
-  used: false,
-}));
+import Home from "./pages/Home";
+import WishPage from "./pages/WishPage";
+import TimePage from "./pages/TimePage";
+import Moment from "./pages/Moment"; // Import the new Moment page
+import Playlist from "./pages/Playlist"; // Import the new Playlist page
 
 const App: React.FC = () => {
-  const [cards, setCards] = useState<Card[]>(initialCards);
-
-  // โหลดการ์ดจาก localStorage เมื่อเริ่มต้น
-  useEffect(() => {
-    const savedCards = localStorage.getItem("cards");
-    if (savedCards) {
-      const parsedCards = JSON.parse(savedCards);
-      setCards(parsedCards);
-    }
-  }, []);
-
-  const handleCardClick = (id: number) => {
-    setCards(
-      cards.map((card) => (card.id === id ? { ...card, isOpen: true } : card))
-    );
-  };
-
-  const handleWishSubmit = (id: number, wish: string) => {
-    const updatedCards = cards.map(
-      (card) =>
-        card.id === id ? { ...card, wish, used: true, isOpen: true } : card // ตั้ง isOpen เป็น true เพื่อให้การ์ดยังเปิดหลังส่งคำขอ
-    );
-
-    setCards(updatedCards);
-    localStorage.setItem("cards", JSON.stringify(updatedCards)); // บันทึกการ์ดลง localStorage
-  };
-
-  const handleReset = () => {
-    setCards(initialCards);
-    localStorage.removeItem("cards"); // ลบการ์ดออกจาก localStorage
-  };
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Happy 2nd Anniversary!</h1>
-        <div className="card-container">
-          {cards.map((card) => (
-            <WishCard
-              key={card.id}
-              id={card.id}
-              isOpen={card.isOpen}
-              wish={card.wish} // ส่งคำขอไปยังการ์ด
-              used={card.used}
-              onCardClick={handleCardClick}
-              onWishSubmit={handleWishSubmit}
-            />
-          ))}
-        </div>
-        <button className="reset-button" onClick={handleReset}>
-          Reset Wishes
-        </button>
-      </header>
-    </div>
+    <Router basename="/HNY2">
+      {" "}
+      {/* Set the basename here */}
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/wishes" element={<WishPage />} />
+          <Route path="/time" element={<TimePage />} />
+          <Route path="/moment" element={<Moment />} />{" "}
+          {/* Add the route for Moment */}
+          <Route path="/playlist" element={<Playlist />} />{" "}
+          {/* Add the route for Playlist */}
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
