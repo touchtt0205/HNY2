@@ -1,8 +1,11 @@
 // src/components/TimeElapsedPage.tsx
 import React, { useEffect, useState } from "react";
-import "./TimeElapsedPage.css"; // Import the new CSS file
+import { useNavigate } from "react-router-dom";
+import "./TimeElapsedPage.css"; // Import the CSS file
+import image from "../assets/test.jpg";
 
 const TimePage: React.FC = () => {
+  const navigate = useNavigate();
   const [timeElapsed, setTimeElapsed] = useState({
     days: 0,
     hours: 0,
@@ -11,11 +14,11 @@ const TimePage: React.FC = () => {
   });
 
   useEffect(() => {
-    const startDate = new Date("2022-11-22T00:00:00Z"); // Start date
+    const startDate = new Date("2022-11-22T00:00:00Z");
     const interval = setInterval(() => {
       const now = new Date();
       const elapsedTime = Math.floor(
-        (now.getTime() - startDate.getTime()) / 1000 // Convert to seconds
+        (now.getTime() - startDate.getTime()) / 1000
       );
 
       const days = Math.floor(elapsedTime / 86400);
@@ -29,24 +32,44 @@ const TimePage: React.FC = () => {
         minutes,
         seconds,
       });
-    }, 1000); // Update every second
+    }, 1000);
 
-    return () => clearInterval(interval); // Clear interval on unmount
+    return () => clearInterval(interval);
   }, []);
+
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   return (
     <div className="time-elapsed-page">
-      <h1 className="title">How Long Have We Been Together?</h1>
-      <div className="time-display">
-        <p className="time-text">
-          ผ่านมาแล้ว <span className="time-value days">{timeElapsed.days}</span>{" "}
-          วัน <span className="time-value hours">{timeElapsed.hours}</span>{" "}
-          ชั่วโมง{" "}
-          <span className="time-value minutes">{timeElapsed.minutes}</span> นาที{" "}
-          <span className="time-value seconds">{timeElapsed.seconds}</span>{" "}
-          วินาที
-        </p>
+      <h1 className="title">The time we spend together?</h1>
+
+      <div className="content-container">
+        <img src={image} alt="Description" className="corner-image" />
+        <div className="description">
+          This is a beautiful description of our time together.
+        </div>
+
+        <div className="time-display">
+          <div className="time-labels">
+            <div>day</div>
+            <div>hour</div>
+            <div>minute</div>
+            <div>second</div>
+          </div>
+          <div className="time-values">
+            <div>{timeElapsed.days.toString().padStart(3, "0")}</div>
+            <div>{timeElapsed.hours.toString().padStart(2, "0")}</div>
+            <div>{timeElapsed.minutes.toString().padStart(2, "0")}</div>
+            <div>{timeElapsed.seconds.toString().padStart(2, "0")}</div>
+          </div>
+        </div>
       </div>
+
+      <button className="back-button" onClick={handleBack}>
+        x
+      </button>
     </div>
   );
 };

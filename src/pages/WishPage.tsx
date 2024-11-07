@@ -1,5 +1,6 @@
 // src/pages/WishPage.tsx
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import WishCard from "../components/WishCard";
 
 interface Card {
@@ -25,6 +26,7 @@ const initializeCards = (): Card[] => {
 
 const WishPage: React.FC = () => {
   const [cards, setCards] = useState<Card[]>(initializeCards());
+  const navigate = useNavigate();
 
   // Effect to save cards to localStorage whenever they change
   useEffect(() => {
@@ -47,20 +49,23 @@ const WishPage: React.FC = () => {
   };
 
   // Function to reset cards and clear localStorage
-  const handleReset = () => {
-    const initialCards = Array.from({ length: 9 }, (_, i) => ({
-      id: i,
-      isOpen: false,
-      wish: undefined,
-      used: false,
-    }));
-    setCards(initialCards);
-    localStorage.removeItem("cards"); // Clear localStorage
+  // const handleReset = () => {
+  //   const initialCards = Array.from({ length: 9 }, (_, i) => ({
+  //     id: i,
+  //     isOpen: false,
+  //     wish: undefined,
+  //     used: false,
+  //   }));
+  //   setCards(initialCards);
+  //   localStorage.removeItem("cards"); // Clear localStorage
+  // };
+  const handleBack = () => {
+    navigate(-1);
   };
 
   return (
     <div className="wish-page">
-      <h1>Make a Wish!</h1>
+      <h1>Honey , any wishes?</h1>
 
       <div className="card-container">
         {cards.map((card) => (
@@ -76,8 +81,11 @@ const WishPage: React.FC = () => {
           />
         ))}
       </div>
-      <button onClick={handleReset} className="reset-button">
+      {/* <button onClick={handleReset} className="reset-button">
         Reset Wishes
+      </button> */}
+      <button className="back-button" onClick={handleBack}>
+        x
       </button>
     </div>
   );

@@ -1,52 +1,118 @@
 /* src/components/TimeElapsedPage.css */
-
 .time-elapsed-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    background-color: #f7fafc; /* Light gray background */
-    min-height: 100vh; /* Full viewport height */
+  font-family: "Titan One", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 2.5em; /* Increase title size for emphasis */
+  color: #ffb3ba; /* Light Pink for the title */
+}
+
+.content-container {
+  display: flex;
+  align-items: center; /* Align items to the center */
+  justify-content: center; /* Center content horizontally */
+  width: 90%; /* Adjusted width for responsiveness */
+  position: relative; /* For positioning the image */
+  padding: 20px; /* Padding inside the container */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  background-color: white; /* White background for content */
+}
+
+.corner-image {
+  width: 100px; /* Set the desired width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 5px; /* Rounded corners for image */
+  margin-right: 20px; /* Space between image and description */
+}
+
+.description {
+  font-size: 1.2em; /* Font size for description */
+  color: #98beea; /* Text color for description */
+  margin-right: 20px; /* Spacing from the image */
+  flex: 1; /* Allow it to grow and fill space */
+}
+
+.time-display {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+  text-align: center; /* Center align text */
+  width: 100%; /* Make sure it takes full width */
+  margin-top: 20px; /* Add some space above the time display */
+}
+
+.time-labels, .time-values {
+  display: contents; /* Allow the grid layout to manage children */
+}
+
+.time-labels div {
+  font-size: 1.2em; /* Adjust size for labels */
+  color: #676767; /* Peach color for labels */
+  margin-bottom: 5px; /* Space between rows */
+}
+
+.time-values div {
+  font-family: "Bungee Tint", sans-serif;
+
+  font-size: 2em; /* Larger font size for values */
+  color: #ff5656; /* Mint Green for values */
+}
+
+.back-button {
+  margin-top: 20px; /* Spacing above the button */
+  padding: 10px 20px; /* Padding around the button */
+  background-color: #ff677d; /* Salmon Pink button */
+  color: white; /* White text on button */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+.back-button:hover {
+  background-color: #ff4b5c; /* Darker shade on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column; /* Stack items vertically for mobile */
+    align-items: center; /* Center align items vertically */
+    width: 95%; /* Slightly increase width for smaller screens */
   }
-  
-  .title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    color: #2d3748; /* Dark text */
+
+  .corner-image {
+    width: 80px; /* Reduce image size for mobile */
+    margin-bottom: 10px; /* Space below the image */
   }
-  
+
+  .description {
+    margin-right: 0; /* Reset margin for mobile */
+    margin-bottom: 10px; /* Add space below the description */
+    font-size: 1em; /* Adjust font size for smaller screens */
+    text-align: center; /* Center the description text */
+  }
+
   .time-display {
-    background-color: white; /* White background for the time box */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    border-radius: 0.5rem; /* Rounded corners */
-    border: 1px solid #cbd5e0; /* Light gray border */
-    padding: 1.5rem; /* Padding inside the box */
-    text-align: center; /* Center text */
+    grid-template-columns: repeat(4, 1fr); /* Keep 4 columns for consistency */
+    margin-top: 0; /* Remove top margin since it's now below the image */
+    width: 100%; /* Make sure it takes full width */
   }
-  
-  .time-text {
-    font-size: 1.5rem; /* Text size for the time display */
+
+  .time-labels div,
+  .time-values div {
+    font-size: 1.2em; /* Adjust font size for mobile */
   }
-  
-  .time-value {
-    font-weight: bold; /* Bold font for time values */
+
+  .title {
+    font-size: 2em; /* Decrease title size for smaller screens */
   }
-  
-  .days {
-    color: #2b6cb0; /* Blue color for days */
-  }
-  
-  .hours {
-    color: #48bb78; /* Green color for hours */
-  }
-  
-  .minutes {
-    color: #ecc94b; /* Yellow color for minutes */
-  }
-  
-  .seconds {
-    color: #e53e3e; /* Red color for seconds */
-  }
-  
+}

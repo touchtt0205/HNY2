@@ -7,6 +7,7 @@ import WishPage from "./pages/WishPage";
 import TimePage from "./pages/TimePage";
 import Moment from "./pages/Moment"; // Import the new Moment page
 import Playlist from "./pages/Playlist"; // Import the new Playlist page
+import EnvelopePage from "./pages/EnvelopePage"; // Import the new page
 
 const App: React.FC = () => {
   return (
@@ -21,7 +22,8 @@ const App: React.FC = () => {
           <Route path="/moment" element={<Moment />} />{" "}
           {/* Add the route for Moment */}
           <Route path="/playlist" element={<Playlist />} />{" "}
-          {/* Add the route for Playlist */}
+          <Route path="/envelope" element={<EnvelopePage />} />{" "}
+          {/* New route */}
         </Routes>
       </div>
     </Router>

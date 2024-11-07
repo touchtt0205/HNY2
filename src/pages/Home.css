@@ -1,5 +1,8 @@
 /* src/pages/Home.css */
 .home-container {
+    /* font-family: "Holtwood One SC", serif; */
+    font-family: "Gochi Hand", serif;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,9 +30,10 @@
 /* General card styling */
 .card-home {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
+    flex-direction: column;       /* เรียงตามแนวตั้ง */
+    justify-content: center;      /* จัดตำแหน่งกลางแนวตั้ง */
+    align-items: center;          /* จัดตำแหน่งกลางแนวนอน */
+    background-color: #f5f5f5;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
     height: 10rem; /* Equivalent to h-40 */
@@ -37,6 +41,8 @@
     padding: 1rem;
     text-align: center;
     width: 45%; /* Set width for mobile (two cards per row) */
+    position: relative;            /* ตั้งค่า relative สำหรับเงา */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* เพิ่มเงาไปทางขวาล่าง */
 }
 
 .card-home:hover {
@@ -75,3 +81,6 @@
         width: 20%; /* Set width for four cards per row on larger screens */
     }
 }
+
+
+  
