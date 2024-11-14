@@ -3,12 +3,42 @@
 @tailwind utilities;
 
 /* src/App.css */
-.App {
+/* App.css */
+/* body {
+  background-color: #ffa8a8;
+  font-family: Arial, sans-serif; 
+} */
+
+body {
+  background-image: url('/src/assets/bg.jpg');
+  background-size: cover; /* ปรับขนาดภาพให้ครอบคลุมทั้งหน้าจอ */
+  background-position: center; /* วางภาพไว้ที่กลาง */
+  
+}
+
+/* .App {
   text-align: center;
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
   min-height: 100vh;
   padding: 20px;
+} */
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* วางเนื้อหาให้สามารถทับภาพพื้นหลัง */
+  color: white; /* ใช้สีข้อความที่คมชัดกับพื้นหลัง */
+}
+.App::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(160, 160, 160, 0.4); /* เพิ่มเลเยอร์ทึบสีดำเพื่อให้ข้อความเด่นขึ้น */
+  z-index: -1; /* ทำให้เลเยอร์นี้อยู่ด้านหลัง */
 }
 
 /* การ์ดรวมกัน */

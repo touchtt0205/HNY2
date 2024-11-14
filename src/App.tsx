@@ -1,29 +1,25 @@
 // src/App.tsx
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import WishPage from "./pages/WishPage";
 import TimePage from "./pages/TimePage";
-import Moment from "./pages/Moment"; // Import the new Moment page
-import Playlist from "./pages/Playlist"; // Import the new Playlist page
-import EnvelopePage from "./pages/EnvelopePage"; // Import the new page
+import Moment from "./pages/Moment";
+import Playlist from "./pages/Playlist";
+import EnvelopePage from "./pages/EnvelopePage";
 
 const App: React.FC = () => {
   return (
-    <Router basename="/HNY2">
-      {" "}
-      {/* Set the basename here */}
+    <Router>
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/wishes" element={<WishPage />} />
           <Route path="/time" element={<TimePage />} />
-          <Route path="/moment" element={<Moment />} />{" "}
-          {/* Add the route for Moment */}
-          <Route path="/playlist" element={<Playlist />} />{" "}
-          <Route path="/envelope" element={<EnvelopePage />} />{" "}
-          {/* New route */}
+          <Route path="/moment" element={<Moment />} />
+          <Route path="/playlist" element={<Playlist />} />
+          <Route path="/envelope" element={<EnvelopePage />} />
         </Routes>
       </div>
     </Router>

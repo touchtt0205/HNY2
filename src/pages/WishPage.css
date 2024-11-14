@@ -1,0 +1,111 @@
+/* src/pages/WishPage.css */
+
+/* Add Titan One font globally */
+/* body {
+    font-family: 'Titan One', sans-serif;
+} */
+
+/* Specific styling for WishPage */
+.wish-page-wrapper {
+    font-family: 'Titan One', sans-serif; /* ใช้ฟอนต์ Titan One */
+    text-align: center;
+    padding: 20px;
+    /* background-color: #f7f7f7; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  .wish-page-wrapper h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-size: 2.5em; /* Increase title size for emphasis */
+    color: #ffffff; /* Light Pink for the title */
+    text-shadow: 5px 5px 10px hsla(0, 70%, 74%, 0.9); /* 5px ไปทางขวา, 5px ลงล่าง */
+
+  }
+  
+  /* Styling for the card container specific to WishPage */
+  .wish-page-wrapper .card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+    margin-bottom: 30px;
+    max-width: 90%;
+  }
+  
+  .wish-page-wrapper .card-container .card {
+    width: 100%;
+    max-width: 250px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Back button styling */
+  /* .wish-page-wrapper .back-button {
+    background-color: #ff1744;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .wish-page-wrapper .back-button:hover {
+    background-color: #d50032;
+  } */
+  
+/* Responsive styles for mobile devices */
+@media (max-width: 768px) {
+    /* Title font size for medium screens */
+    .wish-page-wrapper h1 {
+      font-size: 2rem; /* Reduce title size */
+      margin-bottom: 15px;
+    }
+  
+    /* Change grid layout for smaller screens */
+    .wish-page-wrapper .card-container {
+      grid-template-columns: repeat(2, 1fr); /* 2 equal columns on tablets */
+      gap: 15px;
+    }
+  
+    .wish-page-wrapper .card-container .card {
+      max-width: 220px; /* Slightly smaller card width */
+    }
+    
+  }
+  
+  @media (max-width: 480px) {
+    /* Title font size for smaller screens */
+    .wish-page-wrapper h1 {
+      font-size: 1.5rem; /* Reduce title size further */
+      margin-bottom: 10px;
+    }
+  
+    /* Change grid layout for mobile screens */
+    .wish-page-wrapper .card-container {
+        grid-template-columns: repeat(2, 1fr);
+              gap: 10px;
+    }
+  
+    .wish-page-wrapper .card-container .card {
+      max-width: 90%; /* Ensure cards take up most of the screen width */
+    }
+  
+    /* Adjust padding for mobile */
+    .wish-page-wrapper {
+      padding: 10px;
+    }
+  }
+  
+  

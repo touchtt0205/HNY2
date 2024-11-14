@@ -1,111 +1,279 @@
 /* src/components/WishCard.css */
 
+
+
 /* เพิ่มการตั้งค่าพื้นฐานสำหรับการพลิกการ์ด */
 .card {
-    position: relative;
-    width: 100%; /* ให้การ์ดมีความกว้าง 100% */
-    height: 200px; /* กำหนดความสูงของการ์ด */
-    perspective: 1000px; /* ตั้งค่ามุมมองเพื่อสร้างเอฟเฟกต์พลิก */
-    transition: transform 0.6s; /* ความเร็วของการพลิก */
-  }
-  
-  /* แบ่งการ์ดออกเป็นด้านหน้าและด้านหลัง */
-  .card-inner {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s;
-    transform-style: preserve-3d; /* คงรูปทรง 3D */
-  }
-  
-  /* พลิกการ์ดเมื่อเปิด */
-  .card.open .card-inner {
-    transform: rotateY(180deg); /* พลิกการ์ดในแนวนอน */
-  }
-  
-  /* ด้านหน้า */
-  .card-front,
-  .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden; /* ซ่อนด้านหลังเมื่อไม่แสดง */
-  }
-  
-  /* สไตล์ของด้านหน้า */
-  .card-front {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* สไตล์ของด้านหลัง */
-  .card-back {
-    background: #e0f7fa; /* เปลี่ยนสีด้านหลัง */
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: rotateY(180deg); /* พลิกด้านหลัง */
-  }
-  
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .wish-text {
-    margin-top: 10px;
-    font-weight: bold; /* ทำให้ข้อความคำขอพรหนาขึ้น */
-    color: #4caf50; /* ใช้สีเขียวเพื่อให้ดูเด่น */
-  }
-  
-  input {
-    margin-top: 10px;
-    padding: 8px;
-    width: 90%;
-    max-width: 250px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1em;
-  }
-  
-  button {
-    margin-top: 10px;
-    padding: 8px 16px;
-    cursor: pointer;
-    background-color: #4caf50; /* สีพื้นหลังของปุ่ม */
-    color: white; /* สีข้อความ */
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #45a049; /* เปลี่ยนสีเมื่อวางเมาส์ */
-  }
-  
-  /* src/components/WishCard.css */
+  position: relative;
+  width: 100%; /* ให้การ์ดมีความกว้าง 100% */
+  height: 200px; /* กำหนดความสูงของการ์ด */
+  perspective: 1000px; /* ตั้งค่ามุมมองเพื่อสร้างเอฟเฟกต์พลิก */
+  border-radius: 5%;
+  transition: transform 0.6s; /* ความเร็วของการพลิก */
+}
+
+/* แบ่งการ์ดออกเป็นด้านหน้าและด้านหลัง */
+.card-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d; /* คงรูปทรง 3D */
+}
+
+
+.wish-description{
+  font-family: "Titan One", sans-serif;
+  font-size: 1.2em;
+  color: #699edb;
+  margin-right: 20px;
+  flex: 1;
+}
+
+/* พลิกการ์ดเมื่อเปิด */
+.card.open .card-inner {
+  transform: rotateY(180deg); /* พลิกการ์ดในแนวนอน */
+}
+
+/* ด้านหน้า */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* ซ่อนด้านหลังเมื่อไม่แสดง */
+}
+
+/* สไตล์ของด้านหน้า */
+.card-front {
+  background: #FFE4E1; /* เปลี่ยนสีด้านหลัง */
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* สไตล์ของด้านหลัง */
+.card-back {
+  background: #f1d3cf; /* เปลี่ยนสีด้านหลัง */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(180deg); /* พลิกด้านหลัง */
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wish-text {
+  margin-top: 10px;
+  font-weight: bold; /* ทำให้ข้อความคำขอพรหนาขึ้น */
+  color: #ffffff; /* ใช้สีเขียวเพื่อให้ดูเด่น */
+}
+
+
+input {
+  margin-top: 10px;
+  padding: 10px 15px;
+  width: 90%;
+  max-width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: #f5f5f5; /* Light background color */
+  color: #c7c7c7; /* Text color */
+  transition: background-color 0.3s ease; /* Smooth transition for background */
+}
+
+/* ใน WishCard.css */
+.wish-content input::placeholder {
+  color: #b6b6b6; /* สีที่คุณต้องการ เช่น สีแดงทับทิม */
+  margin: 10px;
+}
+
+.wish-content input {
+  text-align: center; /* จัดข้อความในช่องกรอกให้ตรงกลาง */
+  line-height: 2em; /* ปรับความสูงของบรรทัดให้ตรงกับความสูงของ input */
+}
+
+/* Style for the smaller submit button */
+.wish-content button {
+  background-color: #4CAF50; /* สีพื้นหลังปุ่ม (เขียว) */
+  margin-top: 5%;
+  color: white; /* สีข้อความภายในปุ่ม */
+  border: none; /* ไม่มีขอบ */
+  border-radius: 5px; /* ทำมุมปุ่มให้โค้ง */
+  padding: 8px 16px; /* ลดขนาด padding ให้เล็กลง */
+  font-size: 14px; /* ขนาดฟอนต์เล็กลง */
+  cursor: pointer; /* เปลี่ยนเคอร์เซอร์เป็นมือเมื่ออยู่เหนือปุ่ม */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* การเปลี่ยนแปลงสีและการแอนิเมชัน */
+  width: auto; /* ให้ปุ่มมีขนาดพอดีกับเนื้อหาภายใน */
+  box-sizing: border-box; /* ให้ขนาดรวมของปุ่มรวมถึง padding */
+}
+
+/* เมื่อ hover เหนือปุ่ม */
+.wish-content button:hover {
+  background-color: #45a049; /* เปลี่ยนสีปุ่มเมื่อ hover */
+  transform: translateY(-2px); /* เพิ่มเอฟเฟกต์เลื่อนปุ่มเมื่อ hover */
+}
+
+/* เมื่อปุ่มถูกกด */
+.wish-content button:active {
+  transform: translateY(0); /* ยกเลิกการเคลื่อนไหวเมื่อคลิก */
+}
+
+button {
+  margin-top: 10%;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: #4caf50; /* สีพื้นหลังของปุ่ม */
+  color: white; /* สีข้อความ */
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049; /* เปลี่ยนสีเมื่อวางเมาส์ */
+}
+
 
 /* เพิ่มสไตล์ให้กับปุ่มปิด */
 .close-button {
-    background: none; /* ปิดพื้นหลัง */
-    border: none; /* ปิดกรอบ */
-    color: #f44336; /* ใช้สีแดง */
-    font-size: 24px; /* ขนาดตัวอักษร */
-    position: absolute; /* วางอยู่ที่มุมของการ์ด */
+  background: none; /* ปิดพื้นหลัง */
+  border: none; /* ปิดกรอบ */
+  color: #f44336; /* ใช้สีแดง */
+  font-size: 24px; /* ขนาดตัวอักษร */
+  position: absolute; /* วางอยู่ที่มุมของการ์ด */
+  top: 10px;
+  right: 10px;
+  cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อวางเมาส์ */
+  transition: color 0.3s; /* เอฟเฟกต์เปลี่ยนสี */
+}
+
+.close-button:hover {
+  color: #c62828; /* เปลี่ยนสีเมื่อวางเมาส์ */
+}
+
+/* สไตล์สำหรับหน้าจอขนาดเล็ก (สูงสุด 600px) */
+@media (max-width: 600px) {
+  /* ลดขนาดการ์ด */
+  .card {
+    height: 180px; /* ปรับความสูงของการ์ด */
+  }
+  .card-container{
+    justify-content: center;
+  }
+
+  /* ลดมุมโค้ง */
+  .card-front, .card-back {
+    border-radius: 8px; /* ลดความโค้งของมุม */
+  }
+
+  /* ลดขนาดของช่องกรอก */
+  input {
+    padding: 6px;
+    font-size: 0.9em; /* ลดขนาดฟอนต์ */
+    max-width: 220px; /* จำกัดขนาดช่องกรอก */
+    width: 100%; /* ให้ช่องกรอกเต็มความกว้าง */
+    margin-bottom: 10px; /* เพิ่มช่องว่างใต้ช่องกรอก */
+  }
+
+  /* ปรับขนาดปุ่ม */
+  button {
+    padding: 6px 12px;
+    font-size: 0.9em; /* ลดขนาดฟอนต์ */
+    width: 100%; /* ทำให้ปุ่มขยายเต็มความกว้าง */
+    margin-top: 10px; /* เพิ่มช่องว่างด้านบน */
+  }
+
+  /* ปรับขนาดของการ์ดด้านหลัง */
+  .card-back {
+    padding: 12px; /* ลดระยะห่างภายใน */
+  }
+
+  /* ปรับขนาดข้อความสำหรับ wish-text */
+  .wish-text {
+    font-size: 0.9em; /* ลดขนาดตัวอักษร */
+    line-height: 1.4; /* เพิ่มระยะห่างระหว่างบรรทัด */
+  }
+
+  /* ปรับขนาดตัวอักษรของคำบรรยาย */
+  .wish-description {
+
+    font-size: 0.9em;
+    line-height: 1.3;
+  }
+  .wish-content input::placeholder {
+    color: #b6b6b6; /* สีที่คุณต้องการ เช่น สีแดงทับทิม */
+    font-size: 12px;
+  }
+
+  /* ปรับขนาดปุ่มปิด */
+  .close-button {
+    font-size: 18px; /* ลดขนาดปุ่มปิด */
     top: 10px;
     right: 10px;
-    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อวางเมาส์ */
-    transition: color 0.3s; /* เอฟเฟกต์เปลี่ยนสี */
   }
-  
-  .close-button:hover {
-    color: #c62828; /* เปลี่ยนสีเมื่อวางเมาส์ */
+}
+
+
+/* สไตล์สำหรับหน้าจอมือถือขนาดใหญ่ (สูงสุด 400px) */
+@media (max-width: 400px) {
+  /* ลดขนาดการ์ด */
+  .card {
+    height: 160px; /* ปรับความสูงของการ์ด */
   }
-  
+
+  /* ปรับขนาดช่องกรอก */
+  input {
+    padding: 5px;
+    font-size: 0.85em; /* ลดขนาดฟอนต์ */
+    width: 80%; /* ลดขนาดช่องกรอก */
+    max-width: 180px; /* จำกัดขนาดช่องกรอก */
+    margin-bottom: 8px; /* เพิ่มช่องว่างใต้ช่องกรอก */
+  }
+
+  /* ปรับขนาดปุ่ม */
+  button {
+    padding: 5px 10px;
+    font-size: 0.8em; /* ลดขนาดฟอนต์ */
+    width: 100%; /* ปรับขนาดปุ่มให้เต็มความกว้าง */
+    margin-top: 8px; /* เพิ่มช่องว่างด้านบน */
+  }
+
+  /* ปรับขนาดข้อความ wish-text */
+  .wish-text {
+    font-size: 0.8em; /* ลดขนาดฟอนต์ */
+    line-height: 1.3; /* เพิ่มระยะห่างระหว่างบรรทัด */
+  }
+
+  /* ปรับขนาดการ์ดด้านหลัง */
+  .card-back {
+    padding: 8px; /* ลดระยะห่างภายใน */
+  }
+
+  /* ปรับขนาดตัวอักษรของคำบรรยาย */
+  .wish-description {
+    font-size: 0.85em;
+    line-height: 1.2;
+  }
+  .wish-content input::placeholder {
+    color: #b6b6b6; /* สีที่คุณต้องการ เช่น สีแดงทับทิม */
+    font-size: 12px;
+  }
+
+  /* ปรับขนาดปุ่มปิด */
+  .close-button {
+    font-size: 18px; /* ลดขนาดปุ่มปิด */
+    top: 8px;
+    right: 8px;
+  }
+}
+

@@ -4,10 +4,28 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Poor Story', cursive;
-  background: #bdffbd;
+.moment-title {
+  font-family: "Titan One", sans-serif;
+
+  font-size: 2.5rem; /* Approximately equivalent to text-4xl */
+  font-weight: bold;
+  color: #ffffff; /* Dark gray */
+  margin-bottom: 2rem;
+  text-align: center;
+
+  /* เพิ่มเงาเอียงลงทิศขวาล่าง */
+  text-shadow: 5px 5px 10px hsla(0, 64%, 71%, 0.7); /* 5px ไปทางขวา, 5px ลงล่าง */
 }
+
+.moment-description {
+  font-family: "Titan One", sans-serif;
+  font-size: 1.2em;
+  color: #dfeeff;
+  margin-right: 20px;
+  flex: 1;
+  text-align: center;
+}
+
 
 .wrapper {
   width: 100%;
@@ -18,33 +36,37 @@ body {
 .polaroid {
   background: #fff;
   padding: 1rem;
-  box-shadow: 0 0.2rem 1.2rem rgba(0,0,0,0.2);
+  box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.2);
+  border-radius: 4%;
 }
 
 .polaroid > img {
   max-width: 100%;
   height: auto;
+  
 }
 
 .caption {
+  font-family: "Titan One", sans-serif;
+  color: #ffb3ba;
   font-size: 1.8rem;
   text-align: center;
   line-height: 2em;
 }
 
 .item {
-  width: 30%;
+  width: 30%; /* Ensure the items take full width of their container */
   display: inline-block;
   margin-top: 2rem;
   filter: grayscale(100%);
 }
 
-.item .polaroid:before {
+/* .item .polaroid:before {
   content: '';
   position: absolute;
   z-index: -1;
   transition: all 0.35s;
-}
+} */
 
 .item:nth-of-type(4n+1) {
   transform: scale(0.8, 0.8) rotate(5deg);
@@ -57,7 +79,7 @@ body {
   width: 47%;
   bottom: 30px;
   right: 12px;
-  box-shadow: 0 2.1rem 2rem rgba(0,0,0,0.4);
+  box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.4);
 }
 
 .item:nth-of-type(4n+2) {
@@ -71,7 +93,7 @@ body {
   width: 47%;
   bottom: 30px;
   left: 12px;
-  box-shadow: 0 2.1rem 2rem rgba(0,0,0,0.4);
+  box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.4);
 }
 
 .item:nth-of-type(4n+4) {
@@ -85,7 +107,7 @@ body {
   width: 47%;
   bottom: 30px;
   right: 12px;
-  box-shadow: 0 2.1rem 2rem rgba(0,0,0,0.3);
+  box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
 }
 
 .item:nth-of-type(4n+3) {
@@ -99,7 +121,7 @@ body {
   width: 47%;
   bottom: 30px;
   left: 12px;
-  box-shadow: 0 2.1rem 2rem rgba(0,0,0,0.3);
+  box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
 }
 
 .item:hover {
@@ -109,7 +131,7 @@ body {
 }
 
 .item:hover .polaroid:before {
-  content: '';
+  /* content: ''; */
   position: absolute;
   z-index: -1;
   transform: rotate(0deg);
@@ -117,37 +139,131 @@ body {
   width: 90%;
   bottom: 0%;
   right: 5%;
-  box-shadow: 0 1rem 3rem rgba(0,0,0,0.2);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
   transition: all 0.35s;
 }
 
+/* ใช้ Flexbox เพื่อจัดตำแหน่งปุ่มตรงกลาง */
+.container {
+  display: flex;
+  justify-content: center;  /* จัดตำแหน่งในแนวนอน */
+  align-items: center;      /* จัดตำแหน่งในแนวตั้ง */
+  height: 100vh;            /* ทำให้ container มีความสูงเต็มหน้าจอ */
+}
+
 .back-button {
-  background-color: #ff5733;
+  margin-top: 20px;
+  padding: 15px 30px;       /* ปรับขนาดปุ่มให้ใหญ่ขึ้น */
+  background-color: #ff677d;
   color: white;
-  font-size: 1.5rem;
   border: none;
-  padding: 10px 20px;
+  border-radius: 10px;      /* ปรับความโค้งมนของมุมให้ดูนุ่มขึ้น */
   cursor: pointer;
-  border-radius: 5px;
+  font-size: 1.2rem;        /* ปรับขนาดฟอนต์ให้ใหญ่ขึ้น */
+  transition: background-color 0.3s;
 }
 
 .back-button:hover {
-  background-color: #c54e2b;
+  background-color: #ff4f5e;  /* เปลี่ยนสีเมื่อโฮเวอร์ */
 }
 
-/* Media Queries สำหรับมือถือและไอแพด */
+
+.audio-player {
+  display: none;
+}
+
+/* Media Queries for mobile and tablet */
+@media (max-width: 1024px) {
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 images per row on tablets */
+    gap: 1rem;
+  }
+
+  .item {
+    width: 100%; /* Ensure the items take up full width */
+    max-width: 100%; /* Remove max-width on smaller screens */
+  }
+}
+
 @media (max-width: 768px) {
-    .board {
-      grid-template-columns: repeat(2, 1fr); /* แสดง 2 รูปในแต่ละแถว */
-    }
+  .board {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 images per row on medium screens */
+    gap: 1rem;
   }
-  
-  @media (max-width: 480px) {
-    .board {
-      grid-template-columns: 1fr; /* แสดง 1 รูปในแต่ละแถว */
-    }
-  
-    .caption {
-      font-size: 1.5rem; /* ปรับขนาด caption สำหรับหน้าจอเล็ก */
-    }
+
+  .item {
+    width: 100%; /* Full width for each image on smaller screens */
+    margin-top: 1rem;
   }
+  /* ใช้ Flexbox เพื่อจัดตำแหน่งปุ่มตรงกลาง */
+.container {
+  display: flex;
+  justify-content: center;  /* จัดตำแหน่งในแนวนอน */
+  align-items: center;      /* จัดตำแหน่งในแนวตั้ง */
+  height: 100vh;            /* ทำให้ container มีความสูงเต็มหน้าจอ */
+}
+
+.back-button {
+  margin-top: 20px;
+  padding: 15px 30px;       /* ปรับขนาดปุ่มให้ใหญ่ขึ้น */
+  background-color: #ff677d;
+  color: white;
+  border: none;
+  border-radius: 10px;      /* ปรับความโค้งมนของมุมให้ดูนุ่มขึ้น */
+  cursor: pointer;
+  font-size: 1.2rem;        /* ปรับขนาดฟอนต์ให้ใหญ่ขึ้น */
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #ff4f5e;  /* เปลี่ยนสีเมื่อโฮเวอร์ */
+}
+
+}
+
+@media (max-width: 480px) {
+  .board {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 3fr)); /* ใช้ auto-fill เพื่อให้รูปยืดหยุ่น */
+    gap: 1rem;
+  }
+
+  .caption {
+    font-size: 0.5rem; /* Adjust font size for captions on mobile */
+  }
+
+  .title {
+    font-size: 2em; /* Smaller title on mobile */
+  }
+
+  .description {
+    font-size: 1em; /* Smaller description on mobile */
+  }
+
+/* ใช้ Flexbox เพื่อจัดตำแหน่งปุ่มตรงกลาง */
+.container {
+  display: flex;
+  justify-content: center;  /* จัดตำแหน่งในแนวนอน */
+  align-items: center;      /* จัดตำแหน่งในแนวตั้ง */
+  height: 100vh;            /* ทำให้ container มีความสูงเต็มหน้าจอ */
+}
+
+.back-button {
+  margin-top: 20px;
+  padding: 15px 30px;       /* ปรับขนาดปุ่มให้ใหญ่ขึ้น */
+  background-color: #ff677d;
+  color: white;
+  border: none;
+  border-radius: 10px;      /* ปรับความโค้งมนของมุมให้ดูนุ่มขึ้น */
+  cursor: pointer;
+  font-size: 1.2rem;        /* ปรับขนาดฟอนต์ให้ใหญ่ขึ้น */
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #ff4f5e;  /* เปลี่ยนสีเมื่อโฮเวอร์ */
+}
+
+}

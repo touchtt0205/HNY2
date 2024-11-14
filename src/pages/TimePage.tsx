@@ -43,7 +43,7 @@ const TimePage: React.FC = () => {
 
   return (
     <div className="time-elapsed-page">
-      <h1 className="title">The time we spend together?</h1>
+      <h1 className="time-title">The time we spend together?</h1>
 
       <div className="content-container">
         <img src={image} alt="Description" className="corner-image" />

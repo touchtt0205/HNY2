@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Moment.css';
 
 // Import images directly
@@ -15,36 +16,49 @@ import img10 from '../image/10.png';
 import img11 from '../image/11.png';
 import img12 from '../image/12.png';
 
+import song from '../song/spotifydown.com - เพลงรัก.mp3';
+
 const Moment: React.FC = () => {
   const navigate = useNavigate();
+  const [isPlaying] = useState(true);
+
+  useEffect(() => {
+    const audio = document.getElementById("audio-player") as HTMLAudioElement;
+    if (audio && isPlaying) {
+      audio.play().catch((error) => {
+        console.log('Auto-play blocked: ', error);
+      });
+    }
+  }, [isPlaying]); // เมื่อ isPlaying เปลี่ยนค่า, useEffect จะทำงานใหม่
 
   const handleBack = () => {
     navigate(-1);
   };
 
   return (
-    <div className="moment">
-      <h1>Moments</h1>
-      <p>This is the Moments page.</p>
+    <div>
+      <h1 className="moment-title">Moments</h1>
+      <p className="moment-description">This is the Moments page.</p>
 
       {/* Corkboard background */}
       <div className="board">
-        {[
-          { src: img1, caption: "Image 1" },
-          { src: img2, caption: "Image 2" },
-          { src: img3, caption: "Image 3" },
-          { src: img4, caption: "Image 4" },
-          { src: img5, caption: "Image 5" },
-          { src: img6, caption: "Image 6" },
-          { src: img7, caption: "Image 7" },
-          { src: img8, caption: "Image 8" },
-          { src: img9, caption: "Image 9" },
-          { src: img10, caption: "Image 10" },
-          { src: img11, caption: "Image 11" },
-          { src: img12, caption: "Image 12" },
+        {[ 
+          { src: img11, caption: 'November ❤️' },
+          { src: img12, caption: 'December ❤️' },
+          { src: img1, caption: 'January ❤️' },
+          { src: img2, caption: 'February ❤️' },
+          { src: img3, caption: 'March ❤️' },
+          { src: img4, caption: 'April ❤️' },
+          { src: img5, caption: 'May ❤️' },
+          { src: img6, caption: 'June ❤️' },
+          { src: img7, caption: 'July ❤️' },
+          { src: img8, caption: 'August ❤️' },
+          { src: img9, caption: 'September ❤️' },
+          { src: img10, caption: 'October ❤️' },
+          
         ].map((image, index) => (
           <div className="item" key={index}>
-            <div className="polaroid" >
+            <div className="polaroid">
               <img src={image.src} alt={image.caption} />
               <div className="caption">{image.caption}</div>
             </div>
@@ -52,10 +66,28 @@ const Moment: React.FC = () => {
         ))}
       </div>
 
-      {/* Back Button */}
-      <button className="back-button" onClick={handleBack}>x</button>
+      {/* Audio Player - no controls, hidden */}
+      <div className="audio-player">
+        <audio 
+          id="audio-player" 
+          autoPlay 
+          loop 
+          style={{ display: 'none' }} // Hide the audio player completely
+        >
+          <source src={song} type="audio/mp3" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
 
-     
+      {/* Vinyl Record Animation */}
+      <div className="vinyl-record">
+        <div className={`record ${isPlaying ? 'spinning' : ''}`}></div>
+      </div>
+
+      {/* Back Button */}
+      <button className="back-button" onClick={handleBack}>
+        x
+      </button>
     </div>
   );
 };
