@@ -10,11 +10,13 @@
 } */
 
 body {
-  background-image: url('/src/assets/bg.jpg');
-  background-size: cover; /* ปรับขนาดภาพให้ครอบคลุมทั้งหน้าจอ */
-  background-position: center; /* วางภาพไว้ที่กลาง */
+  /* background-image: url('/public/bg.jpg'); */
+  background-size: cover; 
+  background-color: #f9e9e9;
+  background-position: center;
   
 }
+ 
 
 /* .App {
   text-align: center;
@@ -37,7 +39,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(160, 160, 160, 0.4); /* เพิ่มเลเยอร์ทึบสีดำเพื่อให้ข้อความเด่นขึ้น */
+  /* background: rgba(160, 160, 160, 0.4);  */
   z-index: -1; /* ทำให้เลเยอร์นี้อยู่ด้านหลัง */
 }
 

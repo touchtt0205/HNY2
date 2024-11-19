@@ -1,92 +1,238 @@
 /* src/pages/Home.css */
 .home-container {
-    /* font-family: "Holtwood One SC", serif; */
-    font-family: "Gochi Hand", serif;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* จัดกลางในแนวนอน */
-    justify-content: center; /* จัดกลางในแนวตั้ง */
-    padding: 2.5rem;
-    min-height: 100vh;
+  font-family: "Gochi Hand", serif;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  height: auto; /* เปลี่ยนจาก fixed height เพื่อให้รองรับข้อความ */
+  padding: 2.5rem;
+  margin: auto;
+  text-align: center; /* จัดข้อความให้อยู่กลาง */
+  overflow-wrap: break-word; /* จัดข้อความไม่ให้ล้น */
 }
 
 
-.home-title {
-    font-size: 2.5rem; /* Approximately equivalent to text-4xl */
-    font-weight: bold;
-    color: #ffffff; /* Dark gray */
-    margin-bottom: 2rem;
-    text-align: center;
+.home-title-main {
+  font-family: system-ui, sans-serif;
+  font-size: calc(1em + 7vmin);
+  font-weight: 900;
+  color: #ff8398;
+  
+  
+  --x-offset: 0.0625em; 
+  --y-offset: 0.0625em; 
+  --stroke: 0.025em;
+  --background-color: #ffffff;
+  --stroke-color: lightblue;
 
-    /* เพิ่มเงาเอียงลงทิศขวาล่าง */
-    text-shadow: 5px 5px 10px hsla(0, 63%, 57%, 0.9); /* 5px ไปทางขวา, 5px ลงล่าง */
+  text-shadow: 
+    var(--x-offset)
+    var(--y-offset)
+    0px
+    var(--background-color),
+    
+    calc(var(--x-offset) + var(--stroke))
+    calc(var(--y-offset) + var(--stroke))
+    0px
+    var(--stroke-color);
+}
+
+/* For browsers that support spread, using the @supports feature */
+@supports (text-shadow: 1px 1px 1px 1px black) {
+  .home-title-main {
+    text-shadow:
+      var(--x-offset)
+      var(--y-offset)
+      0px
+      0px
+      var(--background-color),
+      
+      var(--x-offset) 
+      var(--y-offset)
+      var(--stroke)
+      0px
+      var(--stroke-color);
+  }
+}
+
+.home-title-second {
+  font-family: system-ui, sans-serif;
+  font-size: calc(1em + 7vmin);
+  font-weight: 900;
+  color: #ff8398;
+  
+  
+  --x-offset: 0.0625em; 
+  --y-offset: 0.0625em; 
+  --stroke: 0.025em;
+  --background-color: #ffffff;
+  --stroke-color: lightblue;
+
+  text-shadow: 
+    var(--x-offset)
+    var(--y-offset)
+    0px
+    var(--background-color),
+    
+    calc(var(--x-offset) + var(--stroke))
+    calc(var(--y-offset) + var(--stroke))
+    0px
+    var(--stroke-color);
+}
+
+/* For browsers that support spread, using the @supports feature */
+@supports (text-shadow: 1px 1px 1px 1px black) {
+  .home-title-second {
+    text-shadow:
+      var(--x-offset)
+      var(--y-offset)
+      0px
+      0px
+      var(--background-color),
+      
+      var(--x-offset) 
+      var(--y-offset)
+      var(--stroke)
+      0px
+      var(--stroke-color);
+  }
+}
+
+.home-title {
+  font-family: system-ui, sans-serif;
+  font-size: calc(1em + 10vmin);
+  font-weight: 900;
+  color: #ff8398;
+  margin-bottom: 2rem;
+  
+  
+  --x-offset: 0.0625em; 
+  --y-offset: 0.0625em; 
+  --stroke: 0.025em;
+  --background-color: white;
+  --stroke-color: lightblue;
+
+  text-shadow: 
+    var(--x-offset)
+    var(--y-offset)
+    0px
+    var(--background-color),
+    
+    calc(var(--x-offset) + var(--stroke))
+    calc(var(--y-offset) + var(--stroke))
+    0px
+    var(--stroke-color);
+}
+
+/* For browsers that support spread, using the @supports feature */
+@supports (text-shadow: 1px 1px 1px 1px black) {
+  .home-title {
+    text-shadow:
+      var(--x-offset)
+      var(--y-offset)
+      0px
+      0px
+      var(--background-color),
+      
+      var(--x-offset) 
+      var(--y-offset)
+      var(--stroke)
+      0px
+      var(--stroke-color);
+  }
 }
 
 
 .card-container-home {
-    display: flex;
-    flex-wrap: wrap; /* Allow cards to wrap to the next line */
-    justify-content: center; /* Center the cards */
-    gap: 1.5rem; /* Space between cards */
-    width: 100%;
-    max-width: 64rem; /* Max width equivalent to max-w-5xl */
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  justify-content: center; /* Center the cards */
+  gap: 1.5rem; /* Space between cards */
+  width: 100%;
+  max-width: 64rem; /* Max width equivalent to max-w-5xl */
 }
 
 /* General card styling */
 .card-home {
-    display: flex;
-    flex-direction: column;       /* เรียงตามแนวตั้ง */
-    justify-content: center;      /* จัดตำแหน่งกลางแนวตั้ง */
-    align-items: center;          /* จัดตำแหน่งกลางแนวนอน */
-    background-color: #f5f5f5;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 0.5rem;
-    height: 10rem; /* Equivalent to h-40 */
-    transition: box-shadow 0.3s;
-    padding: 1rem;
-    text-align: center;
-    width: 45%; /* Set width for mobile (two cards per row) */
-    position: relative;            /* ตั้งค่า relative สำหรับเงา */
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* เพิ่มเงาไปทางขวาล่าง */
+  display: flex;
+  flex-direction: column;       /* เรียงตามแนวตั้ง */
+  justify-content: center;      /* จัดตำแหน่งกลางแนวตั้ง */
+  align-items: center;          /* จัดตำแหน่งกลางแนวนอน */
+  background-color: #f5f5f5;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  height: 10rem; /* Equivalent to h-40 */
+  transition: box-shadow 0.3s;
+  padding: 1rem;
+  text-align: center;
+  width: 45%; /* Set width for mobile (two cards per row) */
+  position: relative;            /* ตั้งค่า relative สำหรับเงา */
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* เพิ่มเงาไปทางขวาล่าง */
 }
 
 .card-home:hover {
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
 }
 
 .card-icon {
-    font-size: 3rem; /* Equivalent to size "4x" */
-    margin-bottom: 0.5rem;
+  font-size: 3rem; /* Equivalent to size "4x" */
+  margin-bottom: 0.5rem;
 }
 
 .card-title {
-    font-size: 1.5rem; /* Equivalent to text-xl */
-    font-weight: 600; /* Equivalent to font-semibold */
-    color: #333; /* Default text color */
+  font-size: 1.5rem; /* Equivalent to text-xl */
+  font-weight: 600; /* Equivalent to font-semibold */
+  color: #333; /* Default text color */
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
-    .card-container-home {
-        flex-direction: row; /* Allow cards to be in a row */
-        justify-content: center; /* Center cards on smaller screens */
-    }
+  .card-container-home {
+      flex-direction: row; /* Allow cards to be in a row */
+      justify-content: center; /* Center cards on smaller screens */
+  }
 
-    .card-home {
-        width: 45%; /* Card width on mobile (two cards per row) */
-    }
+  .card-home {
+      width: 45%; /* Card width on mobile (two cards per row) */
+  }
 }
 
 @media (min-width: 768px) {
-    .card-container-home {
-        flex-direction: row; /* Row layout on larger screens */
-    }
+  .card-container-home {
+      flex-direction: row; /* Row layout on larger screens */
+  }
 
-    .card-home {
-        width: 20%; /* Set width for four cards per row on larger screens */
-    }
+  .card-home {
+      width: 20%; /* Set width for four cards per row on larger screens */
+  }
 }
 
+/* Adjust .home-container and .card-container-home for mobile screens with max-width 400px */
+@media (max-width: 400px) {
+  .home-container {
+    width: 90%; /* Set width to 90% for mobile screens */
+    padding: 1.5rem; /* Adjust padding */
+  }
 
-  
+  .home-title-main, .home-title-second, .home-title {
+    font-size: calc(1em + 5vmin); /* Adjust title font size for small screens */
+  }
+
+  .card-container-home {
+    display: grid; /* Use grid layout for the card container */
+    grid-template-columns: repeat(2, 1fr); /* Create 2 equal-width columns */
+    gap: 1rem; /* Add space between cards */
+    width: 100%; /* Full width of the container */
+  }
+
+  .card-home {
+    width: 100%; /* Ensure cards take up the full width of each grid cell */
+    height: 10rem; /* Fixed height for the cards */
+    /* You can adjust the card height or add more styles here */
+  }
+}

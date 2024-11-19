@@ -4,26 +4,102 @@
   box-sizing: border-box;
 }
 
+/* .board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  border-radius: 5%;
+} */
+
 .moment-title {
-  font-family: "Titan One", sans-serif;
-
-  font-size: 2.5rem; /* Approximately equivalent to text-4xl */
-  font-weight: bold;
-  color: #ffffff; /* Dark gray */
-  margin-bottom: 2rem;
+  font-family: system-ui, sans-serif;
+  font-size: calc(1em + 7vmin);
+  font-weight: 900;
+  color: #ff8398;
   text-align: center;
+  
+  
+  --x-offset: 0.0625em; 
+  --y-offset: 0.0625em; 
+  --stroke: 0.025em;
+  --background-color: white;
+  --stroke-color: lightblue;
 
-  /* เพิ่มเงาเอียงลงทิศขวาล่าง */
-  text-shadow: 5px 5px 10px hsla(0, 64%, 71%, 0.7); /* 5px ไปทางขวา, 5px ลงล่าง */
+  text-shadow: 
+    var(--x-offset)
+    var(--y-offset)
+    0px
+    var(--background-color),
+    
+    calc(var(--x-offset) + var(--stroke))
+    calc(var(--y-offset) + var(--stroke))
+    0px
+    var(--stroke-color);
 }
 
-.moment-description {
-  font-family: "Titan One", sans-serif;
-  font-size: 1.2em;
-  color: #dfeeff;
-  margin-right: 20px;
-  flex: 1;
+/* For browsers that support spread, using the @supports feature */
+@supports (text-shadow: 1px 1px 1px 1px black) {
+  .moment-title {
+    text-shadow:
+      var(--x-offset)
+      var(--y-offset)
+      0px
+      0px
+      var(--background-color),
+      
+      var(--x-offset) 
+      var(--y-offset)
+      var(--stroke)
+      0px
+      var(--stroke-color);
+  }
+}
+
+.moment-des {
+  font-family: system-ui, sans-serif;
+  font-size: calc(1em + 7vmin);
+  font-weight: 900;
+  color: #ff8398;
   text-align: center;
+  
+  
+  --x-offset: 0.0625em; 
+  --y-offset: 0.0625em; 
+  --stroke: 0.025em;
+  --background-color: white;
+  --stroke-color: lightblue;
+
+  text-shadow: 
+    var(--x-offset)
+    var(--y-offset)
+    0px
+    var(--background-color),
+    
+    calc(var(--x-offset) + var(--stroke))
+    calc(var(--y-offset) + var(--stroke))
+    0px
+    var(--stroke-color);
+}
+
+/* For browsers that support spread, using the @supports feature */
+@supports (text-shadow: 1px 1px 1px 1px black) {
+  .moment-des {
+    text-shadow:
+      var(--x-offset)
+      var(--y-offset)
+      0px
+      0px
+      var(--background-color),
+      
+      var(--x-offset) 
+      var(--y-offset)
+      var(--stroke)
+      0px
+      var(--stroke-color);
+  }
 }
 
 
@@ -37,7 +113,7 @@
   background: #fff;
   padding: 1rem;
   box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.2);
-  border-radius: 4%;
+
 }
 
 .polaroid > img {
@@ -49,7 +125,7 @@
 .caption {
   font-family: "Titan One", sans-serif;
   color: #ffb3ba;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   text-align: center;
   line-height: 2em;
 }
@@ -61,12 +137,12 @@
   filter: grayscale(100%);
 }
 
-/* .item .polaroid:before {
-  content: '';
+.item .polaroid:before {
+  /* content: ''; */
   position: absolute;
   z-index: -1;
   transition: all 0.35s;
-} */
+}
 
 .item:nth-of-type(4n+1) {
   transform: scale(0.8, 0.8) rotate(5deg);
@@ -151,8 +227,14 @@
   height: 100vh;            /* ทำให้ container มีความสูงเต็มหน้าจอ */
 }
 
-.back-button {
-  margin-top: 20px;
+/* คลาสเฉพาะสำหรับ container */
+.centered-button-container {
+  display: flex;
+  justify-content: center; /* จัดกึ่งกลางแนวนอน */
+}
+
+/* ปุ่ม */
+.back-button-moment {
   padding: 15px 30px;       /* ปรับขนาดปุ่มให้ใหญ่ขึ้น */
   background-color: #ff677d;
   color: white;
@@ -161,16 +243,34 @@
   cursor: pointer;
   font-size: 1.2rem;        /* ปรับขนาดฟอนต์ให้ใหญ่ขึ้น */
   transition: background-color 0.3s;
+  margin-bottom: 2%;
 }
 
-.back-button:hover {
-  background-color: #ff4f5e;  /* เปลี่ยนสีเมื่อโฮเวอร์ */
+.back-button-moment:hover {
+  background-color: #af3d47;
 }
+
 
 
 .audio-player {
   display: none;
 }
+/* สำหรับ Desktop (หน้าจอใหญ่กว่า 1024px) */
+@media (min-width: 1025px) {
+  .board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 รูปภาพต่อแถว */
+    gap: 2rem; /* ระยะห่างระหว่างรูปภาพ */
+    margin: 2rem auto; /* เพิ่มระยะด้านบน/ด้านล่าง และจัดให้อยู่กลาง */
+    max-width: 1200px; /* กำหนดความกว้างสูงสุดของ container */
+  }
+
+  .item {
+    width: auto; /* ใช้ขนาดอัตโนมัติ */
+    margin-top: 0; /* ลบ margin-top */
+  }
+}
+
 
 /* Media Queries for mobile and tablet */
 @media (max-width: 1024px) {
@@ -178,6 +278,13 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 images per row on tablets */
     gap: 1rem;
+    margin: 0.5em;
+  }
+  .moment-title{
+    font-size: 4rem;
+  }
+  .moment-des{
+    font-size: 3rem;
   }
 
   .item {
@@ -191,6 +298,13 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 images per row on medium screens */
     gap: 1rem;
+    border-radius: 5%;
+  }
+  .polaroid{
+    padding: 0.5rem;
+  }
+  .moment-des {
+    font-size: 1rem;
   }
 
   .item {
@@ -198,16 +312,15 @@
     margin-top: 1rem;
   }
   /* ใช้ Flexbox เพื่อจัดตำแหน่งปุ่มตรงกลาง */
-.container {
+/* คลาสเฉพาะสำหรับ container */
+.centered-button-container {
   display: flex;
-  justify-content: center;  /* จัดตำแหน่งในแนวนอน */
-  align-items: center;      /* จัดตำแหน่งในแนวตั้ง */
-  height: 100vh;            /* ทำให้ container มีความสูงเต็มหน้าจอ */
+  justify-content: center; /* จัดกึ่งกลางแนวนอน */
 }
 
-.back-button {
-  margin-top: 20px;
-  padding: 15px 30px;       /* ปรับขนาดปุ่มให้ใหญ่ขึ้น */
+/* ปุ่ม */
+.back-button-moment {
+  padding: 8px 16px;       /* ปรับขนาดปุ่มให้ใหญ่ขึ้น */
   background-color: #ff677d;
   color: white;
   border: none;
@@ -215,9 +328,10 @@
   cursor: pointer;
   font-size: 1.2rem;        /* ปรับขนาดฟอนต์ให้ใหญ่ขึ้น */
   transition: background-color 0.3s;
+  
 }
 
-.back-button:hover {
+.back-button-moment:hover {
   background-color: #ff4f5e;  /* เปลี่ยนสีเมื่อโฮเวอร์ */
 }
 
@@ -227,42 +341,43 @@
   .board {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 3fr)); /* ใช้ auto-fill เพื่อให้รูปยืดหยุ่น */
-    gap: 1rem;
+    gap: 0.5rem;
+    margin: 1rem;
   }
 
   .caption {
-    font-size: 0.5rem; /* Adjust font size for captions on mobile */
+    font-size: 0.8rem; /* Adjust font size for captions on mobile */
   }
 
-  .title {
+  .moment-title {
     font-size: 2em; /* Smaller title on mobile */
   }
-
-  .description {
-    font-size: 1em; /* Smaller description on mobile */
+  .moment-des {
+    font-size: 1.5em; /* Smaller title on mobile */
   }
 
-/* ใช้ Flexbox เพื่อจัดตำแหน่งปุ่มตรงกลาง */
-.container {
+
+/* คลาสเฉพาะสำหรับ container */
+.centered-button-container {
   display: flex;
-  justify-content: center;  /* จัดตำแหน่งในแนวนอน */
-  align-items: center;      /* จัดตำแหน่งในแนวตั้ง */
-  height: 100vh;            /* ทำให้ container มีความสูงเต็มหน้าจอ */
+  justify-content: center; /* จัดกึ่งกลางแนวนอน */
 }
 
-.back-button {
-  margin-top: 20px;
-  padding: 15px 30px;       /* ปรับขนาดปุ่มให้ใหญ่ขึ้น */
+/* ปุ่ม */
+.back-button-moment {
+  padding: 8px 16px;         /* ลดขนาด padding เพื่อทำให้ปุ่มเล็กลง */
   background-color: #ff677d;
   color: white;
   border: none;
-  border-radius: 10px;      /* ปรับความโค้งมนของมุมให้ดูนุ่มขึ้น */
+  border-radius: 8px;        /* ปรับความโค้งมนของมุมให้เล็กลง */
   cursor: pointer;
-  font-size: 1.2rem;        /* ปรับขนาดฟอนต์ให้ใหญ่ขึ้น */
+  font-size: 1rem;           /* ลดขนาดฟอนต์ให้เล็กลง */
+  width: 60px;              /* กำหนดความยาวปุ่ม */
   transition: background-color 0.3s;
+  margin: 2%;
 }
 
-.back-button:hover {
+.back-button-moment:hover {
   background-color: #ff4f5e;  /* เปลี่ยนสีเมื่อโฮเวอร์ */
 }
 

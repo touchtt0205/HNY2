@@ -8,6 +8,7 @@ import TimePage from "./pages/TimePage";
 import Moment from "./pages/Moment";
 import Playlist from "./pages/Playlist";
 import EnvelopePage from "./pages/EnvelopePage";
+import Ticket  from "./pages/TicketData";
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
           <Route path="/moment" element={<Moment />} />
           <Route path="/playlist" element={<Playlist />} />
           <Route path="/envelope" element={<EnvelopePage />} />
+          <Route path="/ticket" element={<Ticket />} />
         </Routes>
       </div>
     </Router>

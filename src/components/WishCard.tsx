@@ -74,15 +74,15 @@ const WishCard: React.FC<WishCardProps> = ({
           <div className="wish-content">
             {!used ? (
               <>
-                <span className="wish-description">You can make a wish!</span>
+                <span className="wish-description">You can <br></br> <span>make a wish!</span></span>
                 <input
-                  type="text"
+                  type="wish-content-text"
                   value={currentWish}
                   onChange={(e) => setCurrentWish(e.target.value)}
                   placeholder="Enter your wish"
                   onClick={(e) => e.stopPropagation()} // หยุดการคลิกที่การ์ดเมื่อคลิกที่ช่องกรอก
                 />
-                <button onClick={handleSubmit}>Submit</button>
+                <button className="wishcard-button" onClick={handleSubmit}>Submit</button>
               </>
             ) : (
               <p className="wish-text">

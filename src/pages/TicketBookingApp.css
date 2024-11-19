@@ -1,0 +1,217 @@
+/* ตั้งค่าพื้นฐาน */
+body {
+  /* background-color: #f9fafb; */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+/* สไตล์ตั๋ว */
+.ticket {
+  display: flex;
+  align-items: stretch;
+  border: 2px solid #bfdbfe;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, opacity 0.3s ease;
+  background-color: white;
+  width: 800px; /* ให้ตั๋วมีความกว้างเต็มที่ */
+  max-width: 500px; /* จำกัดความกว้างสูงสุดของตั๋ว */
+}
+
+/* คอนเทนเนอร์หลัก */
+.ticket-container {
+  width: 100%;
+  max-width: 1024px;
+  padding: 16px;
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.ticket-header h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1a202c;
+}
+
+.ticket-header button {
+  display: flex;
+  align-items: center;
+  background-color: #3b82f6;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ticket-header button:hover {
+  background-color: #2563eb;
+}
+
+.ticket-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .ticket-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* สไตล์ตั๋ว */
+.ticket {
+  display: flex;
+  align-items: stretch;
+  border: 2px solid #bfdbfe;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, opacity 0.3s ease;
+  background-color: white;
+}
+
+.ticket:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.ticket.used {
+  opacity: 0.5;
+  border-color: #d1d5db;
+}
+
+.ticket-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 96px;
+  background-color: #dbeafe;
+}
+
+.ticket-icon span {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.ticket-details {
+  flex-grow: 1;
+  padding: 16px;
+}
+
+.ticket-details h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a202c;
+  margin-bottom: 8px;
+}
+
+.ticket-details .info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  color: #4b5563;
+}
+
+.ticket-details .info svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.ticket-details .price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.ticket-details .used-badge {
+  font-size: 12px;
+  color: #ef4444;
+  font-weight: medium;
+}
+
+/* ข้อความส่วนล่าง */
+.ticket-footer {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* สำหรับหน้าจอมือถือ */
+@media (max-width: 400px) {
+  .ticket-grid {
+    grid-template-columns: 1 fr; /* จัดให้แสดงผลเป็นคอลัมน์เดียว */
+    gap: 8px; /* ลดระยะห่างระหว่างตั๋ว */
+
+  }
+
+  .ticket {
+    height: 150px; 
+        width: 100%; /* ให้ตั๋วเต็มความกว้างของหน้าจอ */
+    max-width: 100%; /* ตั๋วจะมีความกว้างเต็มที่ */
+  }
+
+  .ticket-header h1 {
+    font-size: 20px; /* ลดขนาดตัวอักษรของหัวข้อ */
+  }
+
+  .ticket-header button {
+    padding: 6px 10px; /* ลดขนาดปุ่ม */
+  }
+
+  .ticket-details h2 {
+    font-size: 16px; /* ลดขนาดตัวอักษรในรายละเอียดตั๋ว */
+  }
+
+  .ticket-details .price {
+    font-size: 14px; /* ลดขนาดของราคาตั๋ว */
+  }
+
+  .ticket-footer {
+    font-size: 12px; /* ลดขนาดตัวอักษรในข้อความส่วนล่าง */
+  }
+}
+
+/* สำหรับหน้าจอ iPad หรือหน้าจอที่ใหญ่กว่ามือถือ */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .ticket-grid {
+    grid-template-columns: repeat(2, 1fr); /* แสดง 2 คอลัมน์ในหน้าจอขนาด iPad */
+  }
+
+  .ticket {
+    width: 100%; /* ให้ตั๋วเต็มความกว้าง */
+    max-width: 500px; /* จำกัดขนาดสูงสุดของตั๋ว */
+  }
+
+  .ticket-header h1 {
+    font-size: 22px; /* เพิ่มขนาดตัวอักษรหัวข้อ */
+  }
+
+  .ticket-header button {
+    padding: 8px 12px; /* เพิ่มขนาดปุ่ม */
+  }
+
+  .ticket-details h2 {
+    font-size: 18px; /* ขยายขนาดตัวอักษรในรายละเอียดตั๋ว */
+  }
+
+  .ticket-details .price {
+    font-size: 16px; /* ขยายขนาดของราคาตั๋ว */
+  }
+
+  .ticket-footer {
+    font-size: 14px; /* ขยายขนาดตัวอักษรในข้อความส่วนล่าง */
+  }
+}

@@ -76,6 +76,11 @@
   color: #ffffff; /* ใช้สีเขียวเพื่อให้ดูเด่น */
 }
 
+.wish-content-text{
+  font-weight: bold; /* ทำให้ข้อความคำขอพรหนาขึ้น */
+  color: #252525; /* ใช้สีเขียวเพื่อให้ดูเด่น */
+}
+
 
 input {
   margin-top: 10px;
@@ -92,17 +97,22 @@ input {
 
 /* ใน WishCard.css */
 .wish-content input::placeholder {
-  color: #b6b6b6; /* สีที่คุณต้องการ เช่น สีแดงทับทิม */
+  font-family: "Titan One", sans-serif;
+  color: #cccccc; /* สีที่คุณต้องการ เช่น สีแดงทับทิม */
   margin: 10px;
+  text-align: center;
 }
 
 .wish-content input {
   text-align: center; /* จัดข้อความในช่องกรอกให้ตรงกลาง */
   line-height: 2em; /* ปรับความสูงของบรรทัดให้ตรงกับความสูงของ input */
+  color: #252525;
 }
 
 /* Style for the smaller submit button */
 .wish-content button {
+  font-family: "Titan One", sans-serif;
+
   background-color: #4CAF50; /* สีพื้นหลังปุ่ม (เขียว) */
   margin-top: 5%;
   color: white; /* สีข้อความภายในปุ่ม */
@@ -127,7 +137,7 @@ input {
   transform: translateY(0); /* ยกเลิกการเคลื่อนไหวเมื่อคลิก */
 }
 
-button {
+.button {
   margin-top: 10%;
   padding: 8px 16px;
   cursor: pointer;
@@ -163,11 +173,17 @@ button:hover {
 
 /* สไตล์สำหรับหน้าจอขนาดเล็ก (สูงสุด 600px) */
 @media (max-width: 600px) {
-  /* ลดขนาดการ์ด */
+  /* ปรับความสูงและขนาดของการ์ด */
   .card {
-    height: 180px; /* ปรับความสูงของการ์ด */
+    min-height: 180px; /* ใช้ min-height แทน height */
+    max-height: 250px; /* เพิ่มความยืดหยุ่นให้การ์ด */
+    width: 100%; /* ใช้ความกว้างเต็มหน้าจอ */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* จัดตำแหน่งให้การ์ดอยู่กลาง */
   }
-  .card-container{
+
+  .card-container {
     justify-content: center;
   }
 
@@ -176,87 +192,99 @@ button:hover {
     border-radius: 8px; /* ลดความโค้งของมุม */
   }
 
-  /* ลดขนาดของช่องกรอก */
+  /* ปรับขนาดของช่องกรอก */
   input {
     padding: 6px;
     font-size: 0.9em; /* ลดขนาดฟอนต์ */
     max-width: 220px; /* จำกัดขนาดช่องกรอก */
-    width: 100%; /* ให้ช่องกรอกเต็มความกว้าง */
-    margin-bottom: 10px; /* เพิ่มช่องว่างใต้ช่องกรอก */
+    width: 100%;
+    margin-bottom: 10px;
   }
 
-  /* ปรับขนาดปุ่ม */
-  button {
-    padding: 6px 12px;
-    font-size: 0.9em; /* ลดขนาดฟอนต์ */
-    width: 100%; /* ทำให้ปุ่มขยายเต็มความกว้าง */
-    margin-top: 10px; /* เพิ่มช่องว่างด้านบน */
+  .wishcard-button {
+    padding: 6px 12px; /* Adjust padding for button size */
+    font-size: 0.9em; /* Button text size */
+    width: 100%; /* Ensure button spans the container width */
+    margin-top: 16px; /* Add spacing from the top */
   }
+  
 
   /* ปรับขนาดของการ์ดด้านหลัง */
   .card-back {
-    padding: 12px; /* ลดระยะห่างภายใน */
+    padding: 12px;
   }
 
   /* ปรับขนาดข้อความสำหรับ wish-text */
   .wish-text {
-    font-size: 0.9em; /* ลดขนาดตัวอักษร */
-    line-height: 1.4; /* เพิ่มระยะห่างระหว่างบรรทัด */
-  }
-
-  /* ปรับขนาดตัวอักษรของคำบรรยาย */
-  .wish-description {
-
     font-size: 0.9em;
-    line-height: 1.3;
+    line-height: 1.4;
   }
+
+  .wish-description {
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack text vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    text-align: center; /* Align text within the element */
+    font-size: 1.5rem; /* Adjust size as needed */
+    line-height: 1.4; /* Adjust spacing between lines */
+    height: 100%; /* Ensure it takes the full height of its container */
+    width: 100%; /* Optional: ensure full width */
+    padding: 10px;
+  }
+  
+
   .wish-content input::placeholder {
-    color: #b6b6b6; /* สีที่คุณต้องการ เช่น สีแดงทับทิม */
+    color: #b6b6b6;
     font-size: 12px;
   }
 
   /* ปรับขนาดปุ่มปิด */
   .close-button {
-    font-size: 18px; /* ลดขนาดปุ่มปิด */
+    font-size: 18px;
     top: 10px;
     right: 10px;
   }
 }
 
-
 /* สไตล์สำหรับหน้าจอมือถือขนาดใหญ่ (สูงสุด 400px) */
-@media (max-width: 400px) {
-  /* ลดขนาดการ์ด */
+@media (max-width: 768px) {
+  /* ปรับขนาดการ์ด */
   .card {
-    height: 160px; /* ปรับความสูงของการ์ด */
+    min-height: 160px;
+    max-height: 220px;
+    width: 100%; /* ใช้ความกว้างเต็มหน้าจอ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   /* ปรับขนาดช่องกรอก */
   input {
     padding: 5px;
-    font-size: 0.85em; /* ลดขนาดฟอนต์ */
-    width: 80%; /* ลดขนาดช่องกรอก */
-    max-width: 180px; /* จำกัดขนาดช่องกรอก */
-    margin-bottom: 8px; /* เพิ่มช่องว่างใต้ช่องกรอก */
+    font-size: 0.85em;
+    width: 80%;
+    max-width: 180px;
+    margin-bottom: 8px;
   }
 
   /* ปรับขนาดปุ่ม */
   button {
     padding: 5px 10px;
-    font-size: 0.8em; /* ลดขนาดฟอนต์ */
-    width: 100%; /* ปรับขนาดปุ่มให้เต็มความกว้าง */
-    margin-top: 8px; /* เพิ่มช่องว่างด้านบน */
+    font-size: 0.8em;
+    width: 100%;
+    margin-top: 8px;
   }
 
   /* ปรับขนาดข้อความ wish-text */
   .wish-text {
-    font-size: 0.8em; /* ลดขนาดฟอนต์ */
-    line-height: 1.3; /* เพิ่มระยะห่างระหว่างบรรทัด */
+    font-size: 0.8em;
+    line-height: 1.3;
   }
 
   /* ปรับขนาดการ์ดด้านหลัง */
   .card-back {
-    padding: 8px; /* ลดระยะห่างภายใน */
+    padding: 8px;
   }
 
   /* ปรับขนาดตัวอักษรของคำบรรยาย */
@@ -264,14 +292,15 @@ button:hover {
     font-size: 0.85em;
     line-height: 1.2;
   }
+
   .wish-content input::placeholder {
-    color: #b6b6b6; /* สีที่คุณต้องการ เช่น สีแดงทับทิม */
+    color: #b6b6b6;
     font-size: 12px;
   }
 
   /* ปรับขนาดปุ่มปิด */
   .close-button {
-    font-size: 18px; /* ลดขนาดปุ่มปิด */
+    font-size: 18px;
     top: 8px;
     right: 8px;
   }

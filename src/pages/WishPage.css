@@ -1,32 +1,74 @@
-/* src/pages/WishPage.css */
-
-/* Add Titan One font globally */
-/* body {
-    font-family: 'Titan One', sans-serif;
-} */
-
-/* Specific styling for WishPage */
+/* Wrapper for the whole page */
 .wish-page-wrapper {
-    font-family: 'Titan One', sans-serif; /* ใช้ฟอนต์ Titan One */
-    text-align: center;
-    padding: 20px;
-    /* background-color: #f7f7f7; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    box-sizing: border-box;
+  font-family: "Gochi Hand", serif; /* Use a suitable font */
+  text-align: center;              /* Center align text */
+  padding: 20px;
+  background-color: #ffffff;       /* White background */
+  display: flex;
+  flex-direction: column;          /* Arrange items vertically */
+  justify-content: center;         /* Center vertically */
+  align-items: center;             /* Center horizontally */
+  max-width: 80%;                  /* Limit max width to 90% of the viewport */
+  width: 60vw;                     /* Full width */
+  max-height: 90vh;                /* Limit max height to 80% of the viewport */
+  height: auto;                    /* Adjust height to content */
+  box-sizing: border-box;          /* Include padding and border in dimensions */
+  margin: auto;                    /* Center on the page */
+  border-radius: 15px;             /* Add rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+  .wish-title {
+    font-family: system-ui, sans-serif;
+    font-size: calc(1em + 7vmin);
+    font-weight: 900;
+    color: #ff8398;
+    
+    --x-offset: 0.0625em; /* เงาไปทางขวา */
+    --y-offset: 0.0625em; /* เงาไปทางล่าง */
+    --stroke: 0.025em;
+    --background-color: white;
+    --stroke-color: lightblue;
+  
+    text-shadow: 
+      var(--x-offset)
+      var(--y-offset)
+      0px
+      var(--background-color),
+      
+      calc(var(--x-offset) + var(--stroke))
+      calc(var(--y-offset) + var(--stroke))
+      0px
+      var(--stroke-color);
   }
   
-  .wish-page-wrapper h1 {
+  /* สำหรับเบราว์เซอร์ที่รองรับ spread (ใช้ @supports) */
+  @supports (text-shadow: 1px 1px 1px 1px black) {
+    .wish-title {
+      text-shadow:
+        var(--x-offset)
+        var(--y-offset)
+        0px
+        0px
+        var(--background-color),
+        
+        var(--x-offset) 
+        var(--y-offset)
+        var(--stroke)
+        0px
+        var(--stroke-color);
+    }
+  }
+  
+  
+  /* .wish-page-wrapper h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    font-size: 2.5em; /* Increase title size for emphasis */
-    color: #ffffff; /* Light Pink for the title */
-    text-shadow: 5px 5px 10px hsla(0, 70%, 74%, 0.9); /* 5px ไปทางขวา, 5px ลงล่าง */
+    font-size: 2.5em;
+    color: #ffffff; 
+    text-shadow: 5px 5px 10px hsla(0, 70%, 74%, 0.9); 
 
-  }
+  } */
   
   /* Styling for the card container specific to WishPage */
   .wish-page-wrapper .card-container {
@@ -46,66 +88,96 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
   
-  /* Back button styling */
-  /* .wish-page-wrapper .back-button {
-    background-color: #ff1744;
+  .back-button-wish {
+    padding: 8px 16px;         /* ลดขนาด padding เพื่อทำให้ปุ่มเล็กลง */
+    background-color: #ff677d;
     color: white;
-    padding: 10px 20px;
-    font-size: 1.2rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 8px;        /* ปรับความโค้งมนของมุมให้เล็กลง */
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: fixed;
-    top: 20px;
-    right: 20px;
+    font-size: 1rem;           /* ลดขนาดฟอนต์ให้เล็กลง */
+    width: 60px;              /* กำหนดความยาวปุ่ม */
+    transition: background-color 0.3s;
+    margin: 2%;
   }
   
-  .wish-page-wrapper .back-button:hover {
-    background-color: #d50032;
-  } */
+  .back-button-wish:hover {
+    background-color: #ff4f5e;  /* เปลี่ยนสีเมื่อโฮเวอร์ */
+  }
   
 /* Responsive styles for mobile devices */
-@media (max-width: 768px) {
-    /* Title font size for medium screens */
-    .wish-page-wrapper h1 {
-      font-size: 2rem; /* Reduce title size */
-      margin-bottom: 15px;
-    }
-  
-    /* Change grid layout for smaller screens */
-    .wish-page-wrapper .card-container {
-      grid-template-columns: repeat(2, 1fr); /* 2 equal columns on tablets */
-      gap: 15px;
-    }
-  
-    .wish-page-wrapper .card-container .card {
-      max-width: 220px; /* Slightly smaller card width */
-    }
-    
+@media (max-width: 820px) {
+  .wish-page-wrapper{
+    width: 80vh;
+  }
+  /* Title font size for medium screens */
+  .wish-title {
+    text-align: center;
+    font-size: 3rem; /* Reduce title size */
+  }
+
+  /* Change grid layout for smaller screens */
+  .wish-page-wrapper .card-container {
+    grid-template-columns: repeat(3, 1fr); /* 2 equal columns on tablets */
+    gap: 1  px; /* Add spacing between cards */
+  }
+
+  .wish-page-wrapper .card-container .card {
+    max-width: 180px; /* Reduce the max width of the card */
+  }
+
+  .back-button-wish {
+    padding: 8px 16px;        
+    background-color: #ff677d;
+    color: white;
+    border: none;
+    border-radius: 8px;       
+    cursor: pointer;
+    font-size: 1rem;         
+    width: 60px;             
+    transition: background-color 0.3s;
   }
   
-  @media (max-width: 480px) {
-    /* Title font size for smaller screens */
-    .wish-page-wrapper h1 {
-      font-size: 1.5rem; /* Reduce title size further */
-      margin-bottom: 10px;
-    }
-  
-    /* Change grid layout for mobile screens */
-    .wish-page-wrapper .card-container {
-        grid-template-columns: repeat(2, 1fr);
-              gap: 10px;
-    }
-  
-    .wish-page-wrapper .card-container .card {
-      max-width: 90%; /* Ensure cards take up most of the screen width */
-    }
-  
-    /* Adjust padding for mobile */
-    .wish-page-wrapper {
-      padding: 10px;
-    }
+  .back-button-wish:hover {
+    background-color: #ff4f5e; 
   }
-  
-  
+}
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .wish-page-wrapper {
+    padding: 10px;
+  }
+
+  .wish-title {
+    font-size: calc(1.5em + 1vmin);
+    margin-top: 15rem;
+  }
+
+  .wish-page-wrapper .card-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .wish-page-wrapper .card-container .card {
+    max-width: none;
+    width: auto;
+  }
+
+  .back-button-wish {
+    width: 45px;
+    height: 45px;
+    bottom: 15px;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 375px) {
+  .wish-page-wrapper .card-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .wish-title {
+    font-size: calc(1.3em + 3vmin);
+  }
+}

@@ -1,108 +1,363 @@
-/* src/pages/EnvelopePage.css */
+:root {
+  --primary: white;
+  --bg-envelope-color: #f5edd1;
+  --envelope-tab: #ecdeb8;
+  --envelope-cover: #e6cfa7;
+  --shadow-color: #a7a7a7;
+  --heart-color: #c2465d;
+}
+.audio-player {
+  display: none;
+}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.enve-title {
+  font-family: "Mali", cursive;
+  font-size: calc(1em + 5vmin); /* ปรับขนาดฟอนต์ให้เหมือน home-title */
+  font-weight: 900;
+  color: tomato;
+  
+  --x-offset: 0.0625em; /* เงาไปทางขวา */
+  --y-offset: 0.0625em; /* เงาไปทางล่าง */
+  --stroke: 0.025em;
+  --background-color: white;
+  --stroke-color: lightblue;
+
+  text-shadow: 
+    var(--x-offset)
+    var(--y-offset)
+    0px
+    var(--background-color),
+    
+    calc(var(--x-offset) + var(--stroke))
+    calc(var(--y-offset) + var(--stroke))
+    0px
+    var(--stroke-color);
+}
+
+@supports (text-shadow: 1px 1px 1px 1px black) {
+  .enve-title {
+    text-shadow:
+      var(--x-offset)
+      var(--y-offset)
+      0px
+      0px
+      var(--background-color),
+      
+      var(--x-offset) 
+      var(--y-offset)
+      var(--stroke)
+      0px
+      var(--stroke-color);
+  }
+}
+
+
+
+.envelope-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 120vh;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 350px;
+  height: 250px;
+  background: var(--bg-envelope-color);
+  box-shadow: 10px 10px 15px var(--shadow-color); /* ปรับทิศทางเงาให้เอียงไปขวาล่าง */
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+}
+
+.envelope-wrapper.flap .envelope::before {
+  z-index: 1;
+  transform: rotateX(180deg);
+}
+
+.envelope-wrapper.flap .letter {
+  bottom: 100px;
+  transform: scale(1.5);
+  transition-delay: 1s;
+  z-index: 2;
+}
+
+.envelope-wrapper.flap .heart {
+  transform: rotate(90deg);
+  transition-delay: 0.4s;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: auto;
+  border-top: 130px solid var(--envelope-tab);
+  border-right: 175px solid transparent;
+  border-left: 175px solid transparent;
+  transform-origin: top;
+  transition: transform 0.5s ease-in-out 0.7s;
+}
+
+.envelope::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0px;
+  height: 0px;
+  border-top: 130px solid transparent;
+  border-right: 175px solid var(--envelope-cover);
+  border-bottom: 120px solid var(--envelope-cover);
+  border-left: 175px solid var(--envelope-cover);
+}
+
+.letter {
+  position: absolute;
+  right: 22%;
+  bottom: 0;
+  width: 54%;
+  height: 80%;
+  background: var(--primary);
+  text-align: center;
+  transition: all 1s ease-in-out;
+  box-shadow: 0 0 5px var(--shadow-color);
+  padding: 20px 10px;
+  z-index: auto;
+  transform: scale(0);
+}
+.envelope .letter {
+  height: 150px; /* Set a fixed height for the visible part of the letter */
+  overflow: hidden; /* Hide any overflowing content */
+  background-color: #fff; /* Ensure a clean background for the letter */
+  padding: 10px; /* Add some padding for aesthetics */
+  border-radius: 8px; /* Optional: rounded corners for a polished look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow effect */
+  text-align: left; /* Ensure text alignment looks good */
+}
+
+
+.letter > .text-enve {
+  font-family: "Mali", cursive;
+
+  color: #666;
+  font-size: 10px;
+  line-height: 1rem;
+}
+
+.text-enve strong {
+  font-size: 10px;
+}
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  background: var(--heart-color);
+  z-index: 4;
+  transform: translate(-50%, -20%) rotate(45deg);
+  transition: transform 0.5s ease-in-out 1s;
+  box-shadow: 0 1px 6px var(--shadow-color);
+  cursor: pointer;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: var(--heart-color);
+  border-radius: 50%;
+}
+
+.heart:before {
+  top: -7.5px;
+}
+
+.heart:after {
+  right: 7.5px;
+}
+
+.instruction {
+  margin-top: 20px;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+}
+
+.back-button-enve {
+  padding: 8px 16px;         /* ลดขนาด padding เพื่อทำให้ปุ่มเล็กลง */
+  background-color: #ff677d;
+  color: white;
+  border: none;
+  border-radius: 8px;        /* ปรับความโค้งมนของมุมให้เล็กลง */
+  cursor: pointer;
+  font-size: 1rem;           /* ลดขนาดฟอนต์ให้เล็กลง */
+  width: 60px;              /* กำหนดความยาวปุ่ม */
+  transition: background-color 0.3s;
+  margin: 2%;
+}
+
+.back-button-enve:hover {
+  background-color: #ff4f5e;  /* เปลี่ยนสีเมื่อโฮเวอร์ */
+}
+
+.flap > .envelope > .letter {
+  bottom: 100px;
+  transform: scale(1.5);
+  transition-delay: 1s;  /* หน่วงเวลาการแสดงผลของ .letter */
+}
+
+/* เพิ่มตัวแปรเพื่อหน่วงเวลาในการปิดซอง */
+.flap .letter {
+  transition-delay: 0s; /* ไม่มีการหน่วงเวลาเมื่อปิดซอง */
+}
+
+.letter-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  max-width: 500px;
+  position: relative;
+  text-align: center;
+}
+
+/* Adjust Close Modal Button */
+.close-modal-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 2rem; /* Keep font size to ensure readability */
+  height: 30px; /* Increase the height of the button */
+  width: 30px;  /* Set a fixed width if you want a square button */
+  cursor: pointer;
+  color: #383838;
+  background-color: #ffffff; /* Background color */
+  border-radius: 10%; /* Make the button circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.close-modal-button:hover {
+  background-color: #ff677d; /* Darker red when hovered */
+  color: white;
+}
+
+.close-modal-button:focus {
+  outline: none; /* Remove outline on focus for cleaner look */
+}
+
+
+.modal-text {
+  /* font-family: "Itim", cursive; */
+  /* font-family: "Kodchasan", sans-serif; */
+  font-family: "Mali", cursive;
+
+  line-height: 1.6;
+  color: #666;
+}
+
+.modal-signature {
+  margin-top: 20px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .back-button-enve {
+    padding: 8px 16px;         /* ลดขนาด padding เพื่อทำให้ปุ่มเล็กลง */
+    background-color: #ff677d;
+    color: white;
+    border: none;
+    border-radius: 8px;        /* ปรับความโค้งมนของมุมให้เล็กลง */
+    cursor: pointer;
+    font-size: 1rem;           /* ลดขนาดฟอนต์ให้เล็กลง */
+    width: 60px;              /* กำหนดความยาวปุ่ม */
+    transition: background-color 0.3s;
+    margin: 2%;
   }
   
-  .envelope-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+  .back-button-enve:hover {
+    background-color: #ff4f5e;  /* เปลี่ยนสีเมื่อโฮเวอร์ */
   }
-  
-  .wrapper {
-    height: 200px;
-    width: 300px;
-    background-color: #ba6ac5;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    z-index: 0;
-  }
-  
-  .lid {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    border-right: 150px solid transparent;
-    border-bottom: 100px solid transparent;
-    border-left: 150px solid transparent;
-    transform-origin: top;
-    transition: transform 0.25s linear;
-  }
-  
-  /* Lid when closed */
-  .lid.one {
-    border-top: 100px solid #e497ae;
-    transform: rotateX(0deg);
-    z-index: 3;
-    transition-delay: 0.75s;
-  }
-  
-  /* Lid when opened */
-  .lid.two {
-    border-top: 100px solid #c93791;
-    transform: rotateX(90deg);
-    z-index: 1;
-    transition-delay: 0.5s;
-  }
-  
-  .envelope {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    border-top: 100px solid transparent;
-    border-right: 150px solid #f0c4d9;
-    border-bottom: 100px solid #f0c4d9;
-    border-left: 150px solid #f2a4e9;
-    z-index: 3;
-  }
-  
-  .letter {
-    position: absolute;
-    top: 0;
-    width: 80%;
-    height: 100%;
+}
+
+/* Media Query for Tablets (iPads, etc.) */
+@media (max-width: 1024px) {
+  .close-modal-button {
+    font-size: 1.8rem; /* Slightly smaller font size */
+    height: 45px; /* Slightly smaller height */
+    width: 45px;  /* Slightly smaller width */
+    top: 8px; /* Adjust the positioning to be closer to the top */
+    right: 8px; /* Adjust the positioning to be closer to the right edge */
     background-color: white;
-    border-radius: 15px;
-    z-index: 2;
-    transition: 0.5s;
+    color: black;
   }
-  
-  .letter p {
-    text-align: center;
-    font-size: 20px; /* Adjusted font size */
-    margin: 20px 0; /* Adjusted margin */
-    color: #3B4049;
+
+  .close-modal-button:hover {
+    background-color: #ac3838; /* Darker red when hovered */
+    color: white;
   }
-  
-  .wrapper:hover .lid.one {
-    transform: rotateX(90deg);
-    transition-delay: 0s;
+}
+
+/* Media Query for Mobile Devices (iPhones, etc.) */
+@media (max-width: 768px) {
+  .close-modal-button {
+    font-size: 1.6rem; /* Smaller font size for mobile */
+    height: 40px; /* Smaller height */
+    width: 40px;  /* Smaller width */
+    top: 6px; /* Adjust positioning */
+    right: 6px; /* Adjust positioning */
+    background-color: white;
+    color: black;
   }
-  
-  .wrapper:hover .lid.two {
-    transform: rotateX(180deg);
-    transition-delay: 0.25s;
+
+  .close-modal-button:hover {
+    background-color: #ac3838; /* Darker red when hovered */
+    color: white;
   }
-  
-  /* Adjusted the translateY value for a larger upward slide */
-  .wrapper:hover .letter {
-    transform: translateY(-120px); /* Increased upward movement */
-    transition-delay: 0.5s;
+}
+
+/* Media Query for Small Mobile Devices (portrait mode, small screens) */
+@media (max-width: 480px) {
+  .close-modal-button {
+    font-size: 1.4rem; /* Even smaller font size */
+    height: 35px; /* Even smaller height */
+    width: 35px;  /* Even smaller width */
+    top: 5px; /* Adjust the positioning */
+    right: 5px; /* Adjust the positioning */
+    background-color: white;
+    color: black;
   }
-  
-  .instruction {
-    margin-top: 20px;
-    font-size: 16px;
-    color: #595959; /* Instruction text color */
+
+  .close-modal-button:hover {
+    background-color: #ac3838; /* Darker red when hovered */
+    color: white;
   }
-  
+}
