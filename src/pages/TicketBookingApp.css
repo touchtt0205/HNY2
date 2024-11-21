@@ -13,7 +13,7 @@ body {
 .ticket {
   display: flex;
   align-items: stretch;
-  border: 2px solid #bfdbfe;
+  /* border: 2px solid #bfdbfe; */
   border-radius: 8px;
   overflow: hidden;
   transition: box-shadow 0.3s ease, opacity 0.3s ease;
@@ -31,15 +31,57 @@ body {
 
 .ticket-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 16px;
 }
 
-.ticket-header h1 {
+/* .ticket-header h1 {
   font-size: 24px;
   font-weight: bold;
   color: #1a202c;
+} */
+.tick-title {
+  font-family: system-ui, sans-serif;
+  font-size: calc(1em + 7vmin);
+  font-weight: 900;
+  color: #ff8398;
+  
+  
+  --x-offset: 0.0625em; 
+  --y-offset: 0.0625em; 
+  --stroke: 0.025em;
+  --background-color: white;
+  --stroke-color: lightblue;
+
+  text-shadow: 
+    var(--x-offset)
+    var(--y-offset)
+    0px
+    var(--background-color),
+    
+    calc(var(--x-offset) + var(--stroke))
+    calc(var(--y-offset) + var(--stroke))
+    0px
+    var(--stroke-color);
+}
+
+/* For browsers that support spread, using the @supports feature */
+@supports (text-shadow: 1px 1px 1px 1px black) {
+  .tick-title {
+    text-shadow:
+      var(--x-offset)
+      var(--y-offset)
+      0px
+      0px
+      var(--background-color),
+      
+      var(--x-offset) 
+      var(--y-offset)
+      var(--stroke)
+      0px
+      var(--stroke-color);
+  }
 }
 
 .ticket-header button {
@@ -63,6 +105,106 @@ body {
   grid-template-columns: repeat(1, 1fr);
   gap: 16px;
 }
+/* TicketBookingApp.css */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+/* Overlay Styles for Ticket Modal */
+.ticket-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Dark translucent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it is on top */
+}
+
+/* Modal Styling for Ticket */
+.ticket-modal {
+  background: hsl(0, 0%, 100%);
+  padding: 40px;
+  border: solid 2px #5e5e5e;
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 400px;
+  max-width: 90%;
+  position: relative; /* This is important to position the buttons inside the modal */
+}
+
+.ticket-modal h3 {
+  color: #1a202c;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.ticket-modal p {
+  color: #6b7280;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+/* Button Styles for Ticket Modal */
+.ticket-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 5px;
+  position: absolute; /* Positioning the buttons */
+  bottom: 20px; /* Place buttons 20px from the bottom */
+  right: 20px; /* Place buttons 20px from the right */
+}
+
+/* Confirm Button Styling */
+.ticket-cancel {
+  background: #ffffff;
+  color: #606060;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  width: 80px;
+  font-size: 18px;
+  transition: .1s all;
+  cursor: pointer;
+}
+
+.ticket-cancel:hover {
+  color: #a0a0a0;
+  background: #f8f8f8;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);}
+
+/* Cancel Button Styling */
+.ticket-confirm {
+  border-color: #61b77f;
+  color: #61b77f;
+  border: 1px solid #61b77f;
+
+  border-radius: 3px;
+  width: 80px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.ticket-confirm:hover {
+  border-color: #61b77f;
+  color: #fff;
+  background-color: #61b77f;
+}
+
+
+
 
 @media (min-width: 640px) {
   .ticket-grid {
@@ -74,12 +216,14 @@ body {
 .ticket {
   display: flex;
   align-items: stretch;
-  border: 2px solid #bfdbfe;
+  /* border: 2px solid #bfdbfe; */
   border-radius: 8px;
   overflow: hidden;
   transition: box-shadow 0.3s ease, opacity 0.3s ease;
   background-color: white;
 }
+
+
 
 .ticket:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -90,14 +234,80 @@ body {
   border-color: #d1d5db;
 }
 
+.food-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+}
+.service-icon {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+}
+
+.freestyle-icon {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+}
+
+.special-icon {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+}
+.think-icon {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+}
+
 .ticket-icon {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 96px;
-  background-color: #dbeafe;
+  width: 150px;
 }
+
+.ticket-icon.ทานอาหาร {
+  background-color: #ff7f7f; /* สีสำหรับทานอาหาร */
+}
+
+.ticket-icon.บริการ {
+  background-color: #87b4ee; /* สีสำหรับบริการ */
+}
+
+.ticket-icon.ตามใจ {
+  background-color: #ffbf00; /* สีสำหรับตามใจ */
+}
+
+.ticket-icon.คิด {
+  background-color: #7f7fff; /* สีสำหรับคิด */
+}
+
+.ticket-icon.ไม่มีการงอน {
+  background-color: #96ff8a; /* สีเริ่มต้น */
+}
+
+.ticket-icon.default {
+  background-color: #ffffff; /* สีเริ่มต้น */
+}
+
 
 .ticket-icon span {
   font-size: 32px;
@@ -107,6 +317,7 @@ body {
 .ticket-details {
   flex-grow: 1;
   padding: 16px;
+  position: relative;
 }
 
 .ticket-details h2 {
@@ -134,11 +345,56 @@ body {
   font-weight: bold;
   color: #2563eb;
 }
+.container-tick {
+  display: flex;
+  justify-content: center;  /* จัดให้ปุ่มอยู่กลางในแนวนอน */
+}
+
+.back-button-tick {
+  padding: 8px 16px;         /* ลดขนาด padding เพื่อทำให้ปุ่มเล็กลง */
+  background-color: #ff677d;
+  color: white;
+  border: none;
+  border-radius: 8px;        /* ปรับความโค้งมนของมุมให้เล็กลง */
+  cursor: pointer;
+  font-size: 1rem;           /* ลดขนาดฟอนต์ให้เล็กลง */
+  width: 60px;              /* กำหนดความยาวปุ่ม */
+  transition: background-color 0.3s;
+  margin: 2%;
+  
+}
+
+.back-button-tick:hover {
+  background-color: #ff4f5e;  /* เปลี่ยนสีเมื่อโฮเวอร์ */
+}
+
+.back-button-restart {
+  padding: 8px 16px;         /* ลดขนาด padding เพื่อทำให้ปุ่มเล็กลง */
+  background-color: #ffd711;
+  color: white;
+  border: none;
+  border-radius: 8px;        /* ปรับความโค้งมนของมุมให้เล็กลง */
+  cursor: pointer;
+  font-size: 1rem;           /* ลดขนาดฟอนต์ให้เล็กลง */
+  width: 60px;              /* กำหนดความยาวปุ่ม */
+  transition: background-color 0.3s;
+  margin: 2%;
+  
+}
+
+.back-button-restart:hover {
+  background-color: #ff9500;  /* เปลี่ยนสีเมื่อโฮเวอร์ */
+}
+
 
 .ticket-details .used-badge {
   font-size: 12px;
   color: #ef4444;
   font-weight: medium;
+  position: absolute; /* ใช้ absolute position */
+  bottom: 0; /* ชิดล่าง */
+  right: 0; /* ชิดขวา */
+  margin: 10px; /* เพิ่มระยะห่างเล็กน้อยจากขอบ */
 }
 
 /* ข้อความส่วนล่าง */
@@ -156,15 +412,39 @@ body {
     gap: 8px; /* ลดระยะห่างระหว่างตั๋ว */
 
   }
+  .tick-title {
+    font-size: calc(1em + 3vmin);
 
-  .ticket {
-    height: 150px; 
-        width: 100%; /* ให้ตั๋วเต็มความกว้างของหน้าจอ */
-    max-width: 100%; /* ตั๋วจะมีความกว้างเต็มที่ */
+  }
+  .ticket-icon {
+    width: 100px;
   }
 
-  .ticket-header h1 {
-    font-size: 20px; /* ลดขนาดตัวอักษรของหัวข้อ */
+  .ticket {
+    height: 100px; 
+    width: 100%; /* ให้ตั๋วเต็มความกว้างของหน้าจอ */
+    max-width: 100%; /* ตั๋วจะมีความกว้างเต็มที่ */
+  }
+  .ticket-details {
+    position: relative; /* ต้องตั้งค่าเป็น relative เพื่อให้ตำแหน่ง absolute ภายในทำงาน */
+  }
+
+
+  .ticket-details .info {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    color: #4b5563;
+  }
+  .ticket-details .used-badge {
+    font-size: 12px;
+    color: #ef4444;
+    font-weight: medium;
+    position: absolute; /* ใช้ absolute position */
+    bottom: 0; /* ชิดล่าง */
+    right: 0; /* ชิดขวา */
+    margin: 10px; /* เพิ่มระยะห่างเล็กน้อยจากขอบ */
   }
 
   .ticket-header button {
@@ -174,20 +454,47 @@ body {
   .ticket-details h2 {
     font-size: 16px; /* ลดขนาดตัวอักษรในรายละเอียดตั๋ว */
   }
-
-  .ticket-details .price {
-    font-size: 14px; /* ลดขนาดของราคาตั๋ว */
+  .food-icon {
+    width: 120px;
   }
+  .service-icon {
+    width: 70px;
+    margin-top: 10px;
+  }
+  
+  .freestyle-icon {
+    width: 80px;
+  }
+  
+  .special-icon {
+    width: 80px;
+    margin-top: 12px;
+  }
+  .think-icon{
+    width: 80px;
+    margin-top: 12px;
+  }
+  
+
 
   .ticket-footer {
-    font-size: 12px; /* ลดขนาดตัวอักษรในข้อความส่วนล่าง */
+    font-size: 10px; /* ลดขนาดตัวอักษรในข้อความส่วนล่าง */
   }
 }
 
-/* สำหรับหน้าจอ iPad หรือหน้าจอที่ใหญ่กว่ามือถือ */
 @media (min-width: 640px) and (max-width: 1024px) {
+  .ticket-container {
+    display: grid;
+    place-items: center; /* จัดให้อยู่กลางทั้งในแนวนอนและแนวตั้ง */
+    height: 80vh;       /* ความสูงเต็มหน้าจอ */
+  }
+
   .ticket-grid {
-    grid-template-columns: repeat(2, 1fr); /* แสดง 2 คอลัมน์ในหน้าจอขนาด iPad */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* แสดง 2 คอลัมน์ */
+    gap: 10px;  /* เพิ่มระยะห่างระหว่างตั๋ว */
+    width: 100%;  /* กำหนดความกว้างของ grid */
+    max-width: 1024px;  /* จำกัดความกว้างของ grid */
   }
 
   .ticket {
@@ -195,12 +502,8 @@ body {
     max-width: 500px; /* จำกัดขนาดสูงสุดของตั๋ว */
   }
 
-  .ticket-header h1 {
-    font-size: 22px; /* เพิ่มขนาดตัวอักษรหัวข้อ */
-  }
-
   .ticket-header button {
-    padding: 8px 12px; /* เพิ่มขนาดปุ่ม */
+    padding: 8px 12px; /* ขยายขนาดปุ่ม */
   }
 
   .ticket-details h2 {

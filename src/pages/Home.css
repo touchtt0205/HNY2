@@ -3,12 +3,12 @@
   font-family: "Gochi Hand", serif;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  border-radius: 5%;
+  border-radius: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 800px;
+  width: 700px;
   height: auto; /* เปลี่ยนจาก fixed height เพื่อให้รองรับข้อความ */
   padding: 2.5rem;
   margin: auto;
@@ -65,6 +65,7 @@
   font-size: calc(1em + 7vmin);
   font-weight: 900;
   color: #ff8398;
+  margin-bottom: 1rem;
   
   
   --x-offset: 0.0625em; 
@@ -191,7 +192,12 @@ box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* เพิ่มเงาไป�
 }
 
 /* Responsive styles */
-@media (max-width: 768px) {
+@media (max-width: 830px) {
+
+  home-container {
+    width: 80%; /* Set width to 90% for mobile screens */
+    padding: 1.5rem; /* Adjust padding */
+  }
   .card-container-home {
       flex-direction: row; /* Allow cards to be in a row */
       justify-content: center; /* Center cards on smaller screens */
@@ -215,7 +221,7 @@ box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* เพิ่มเงาไป�
 /* Adjust .home-container and .card-container-home for mobile screens with max-width 400px */
 @media (max-width: 400px) {
   .home-container {
-    width: 90%; /* Set width to 90% for mobile screens */
+    width: 100%; /* Set width to 90% for mobile screens */
     padding: 1.5rem; /* Adjust padding */
   }
 
